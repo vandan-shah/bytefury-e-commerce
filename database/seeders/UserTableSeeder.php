@@ -17,6 +17,10 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'john doe',
             'email' => 'admin@spacewind.com',
+            'gender'=>'male',
+            'address'=>'bhavnagar',
+            'number'=>'8866148738',
+            'role'=>'admin',
             'password' => bcrypt('password')
         ]);
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Mobile\LoginController;
 use App\Http\Controllers\Auth\Mobile\LogoutController;
+use App\Http\Controllers\CustomersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,8 @@ Route::group(['prefix' => 'auth'], function () {
 // Get authenticated user
 //----------------------------------
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::apiResource('customers', CustomersController::class);
+
 });
