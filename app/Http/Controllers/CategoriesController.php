@@ -41,7 +41,7 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
-        return $this->respondJson('Show all Categories', true, ['category' => $category]);
+        return $this->respondJson('Show all Category', true, ['category' => $category]);
     }
 
     /**
@@ -54,6 +54,7 @@ class CategoriesController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
+
         return $this->respondJson('update Categories', true, ['category' => $category]);
     }
 
@@ -66,6 +67,6 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return $this->respondJson('delete Categories', true, []);
+        return $this->respondJson('delete Categories', true);
     }
 }
