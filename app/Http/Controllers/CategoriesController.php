@@ -67,6 +67,7 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+
         return $this->respondJson('delete Categories', true);
     }
 }
