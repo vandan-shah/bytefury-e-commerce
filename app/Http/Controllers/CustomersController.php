@@ -17,7 +17,6 @@ class CustomersController extends Controller
     public function index()
     {
         $user = User::where('role', 'customer')->paginate(5);
-
         return $this->respondJson('Customers retrieved successfully.', true, ['user' => $user]);
     }
 
@@ -30,7 +29,6 @@ class CustomersController extends Controller
     public function store(CustomersRequest $request)
     {
         $user = User::create($request->validated());
-
         return $this->respondJson('Customer created successfully.', true, ['user' => $user]);
     }
 
@@ -42,10 +40,8 @@ class CustomersController extends Controller
      */
     public function show(User $user)
     {
-
         return $this->respondJson('Customer displayed successfully.', true, ['user' => $user]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -55,11 +51,8 @@ class CustomersController extends Controller
      */
     public function update(CustomersRequest $request, User $user)
     {
-
         $user->update($request->validated());
-        //$user = $user->update($request->only(['name', 'email','gender','address','number']));
         return $this->respondJson('Customer updated successfully.', true, ['user' => $user]);
-
     }
 
     /**
@@ -68,9 +61,9 @@ class CustomersController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(User $user)
     {
-        //
         $user->delete();
         return $this->respondJson('Customer deleted successfully.', true, []);
     }

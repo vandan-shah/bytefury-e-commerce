@@ -53,10 +53,11 @@ class CustomersRequest extends FormRequest
                 'email',
                 Rule::unique('users')->ignore($this->route('customer')),
             ];
-            $rules['password'] = 'nullable';
+            $rules[
+                'password'
+                ] = 'nullable';
 
         }
-
         return $rules;
     }
 }
