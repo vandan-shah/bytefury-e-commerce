@@ -17,9 +17,7 @@
       >
         <sw-card class="mb-5 sm:mb-5 md:mb-5">
           <template body>
-            <h3>
-              Default Card
-            </h3>
+            <h3>Default Card</h3>
             <p class="py-2 text-sm md:mb-0">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Repudiandae perspiciatis, obcaecati animi delectus maxime cumque
@@ -30,9 +28,7 @@
         </sw-card>
 
         <sw-card class="mb-5 sm:mb-5 md:mb-5">
-          <template v-slot:header>
-            Card with header
-          </template>
+          <template v-slot:header> Card with header </template>
           <template body>
             <p class="text-sm">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -45,9 +41,7 @@
 
         <sw-card>
           <template body>
-            <h3 class="py-2 ">
-              Card with Footer
-            </h3>
+            <h3 class="py-2">Card with Footer</h3>
             <p class="text-sm">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Repudiandae perspiciatis, obcaecati animi delectus maxime cumque
@@ -56,16 +50,12 @@
             </p>
           </template>
           <template v-slot:footer>
-            <p>
-              This card has footer.
-            </p>
+            <p>This card has footer.</p>
           </template>
         </sw-card>
       </div>
 
-      <h3 class="px-2 mt-5 sw-section-title">
-        Card With Actions
-      </h3>
+      <h3 class="px-2 mt-5 sw-section-title">Card With Actions</h3>
       <div
         class="grid grid-cols-1 gap-6 mt-3 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 md:mb-8"
       >
