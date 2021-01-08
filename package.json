@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "cross-env": "^7.0",
         "eslint": "^7.11.0",
         "eslint-config-prettier": "^6.13.0",
@@ -34,6 +34,7 @@
         "tailwindcss": "^1.9.5",
         "vue": "^2.6.12",
         "vue-router": "^3.4.7",
+        "vuelidate": "^0.7.6",
         "vuex": "^3.5.1"
     }
 }

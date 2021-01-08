@@ -9,12 +9,30 @@
         <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
             <div class="col-span-4">
 
-                <sw-input-group variant="horizontal" label="Category Name" class="my-10">
-                    <sw-input v-model="formData.name" />
+                <sw-input-group 
+                required 
+                variant="horizontal" 
+                label="Category Name" 
+                class="my-10"
+                :error="errorUsername"
+                >
+                    <sw-input 
+                    v-model="formData.name"
+                    @input="$v.formData.name.$touch()" 
+                    />
                 </sw-input-group>
 
-                <sw-input-group variant="horizontal" label="Description" class="my-10">
-                    <sw-textarea v-model="formData.description" />
+                <sw-input-group
+                required
+                variant="horizontal" 
+                label="Description" 
+                class="my-10"
+                :error="errorDescription"
+                >
+                    <sw-textarea 
+                    v-model="formData.description"
+                    @input="$v.formData.description.$touch()" 
+                    />
                 </sw-input-group>
 
             </div>
@@ -39,6 +57,7 @@
 <script>
 
 import { mapActions } from 'vuex'
+import { required, minLength, between } from 'vuelidate/lib/validators'
 
 export default {
     data() {
@@ -49,11 +68,45 @@ export default {
             }
         }
     },
+    validations: {
+        formData: {
+            name: {
+                required,
+                minLength: minLength(2)
+            },
+            description: {
+                required,
+                minLength: minLength(10)
+            }
+        }
+    },
     computed: {
         // ...mapGetters('categories', ['categories']),
         isEdit() {
             // console.log(this.$route) 
             return this.$route.name === 'category.edit'
+        },
+        errorUsername() {
+            if (!this.$v.formData.name.$error) {
+                return ''
+            }
+            if (!this.$v.formData.name.minLength) {
+                return 'Category Name must be at least 2 characters long'
+            } 
+            if (!this.$v.formData.name.required) { 
+                return 'Category Name is required'
+            }
+        },
+        errorDescription() {
+            if (!this.$v.formData.description.$error) {
+                return ''
+            }
+            if (!this.$v.formData.description.minLength) {
+                return 'Category Name must be at least 10 characters long'
+            } 
+            if (!this.$v.formData.description.required) { 
+                return 'Category Name is required'
+            }
         }
     },
     mounted() {
@@ -81,26 +134,3 @@ export default {
     }
 }
 </script>
-
-/* // this.$store.dispatch('setCurrentCategory', { addCategory: this.addCategory })
-            if (this.isEdit) {
-          response = await this.updateCustomer(this.formData)
-          if (response.data.success) {
-            this.$router.push(
-              `/admin/customers/${response.data.customer.id}/view`
-            )
-            window.toastr['success'](this.$t('customers.updated_message'))
-          }
-          if (response.data.error) {
-            window.toastr['error'](this.$t('validation.email_already_taken'))
-          }
-        } else {
-          response = await this.addCustomer(this.formData)
-          if (response.data.success) {
-            this.$router.push(
-              `/admin/customers/${response.data.customer.id}/view`
-            )
-            window.toastr['success'](this.$t('customers.created_message'))
-          }
-        }
-            // this.addCategory = []*/
