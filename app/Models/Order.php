@@ -18,11 +18,14 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function show(Order $order)
+    {
+        return $order;
     }
     // public function setDateOrder($date)
     // {

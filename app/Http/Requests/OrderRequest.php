@@ -23,7 +23,6 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'order_code' => [
                 "required"
@@ -59,11 +58,15 @@ class OrderRequest extends FormRequest
             'order_items.*.price' => [
                 "required"
             ],
+            'order_items.*.sub_total' => [
+                "required"
+            ],
+            'order_items.*.total' => [
+                "required"
+            ],
             'order_items.*.product_id' => [
                 "required"
             ]
         ];
-
-        //return $rules;
     }
 }

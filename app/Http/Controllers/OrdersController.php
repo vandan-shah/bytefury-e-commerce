@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -29,25 +28,11 @@ class OrdersController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        $order = new Order;
-        $order->order_code = $request->order_code;
-        $order->order_date = $request->order_date;
-        $order->sub_total = $request->sub_total;
-        $order->tax = $request->tax;
-        $order->total = $request->total;
-        $order->status = $request->status;
-        $order->user_id = $request->user_id;
-        $order->save();
+        $order = Order::create($request->only(['order_code', 'order_date', 'sub_total', 'tax', 'total', 'status', 'user_id']));
 
         foreach ($request->order_items as $item) {
-            $orderItem = new OrderItem;
-            $orderItem->name = $item['name'];
-            $orderItem->description = $item['description'];
-            $orderItem->quantity = $item['quantity'];
-            $orderItem->price = $item['price'];
-            $orderItem->order_id = $order->id;
-            $orderItem->product_id = $item['product_id'];
-            $orderItem->save();
+            $item['order_id'] = $order->id;
+            $item = OrderItem::create($item);
         }
 
         $order->load(['orderItems.product', 'user']);
@@ -73,35 +58,17 @@ class OrdersController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequest $request, $id)
+    public function update(OrderRequest $request, Order $order)
     {
-        $order = Order::find($id);
-        $order->order_code = $request->order_code;
-        $order->order_date = $request->order_date;
-        $order->sub_total = $request->sub_total;
-        $order->tax = $request->tax;
-        $order->total = $request->total;
-        $order->status = $request->status;
-        $order->user_id = $request->user_id;
-        $order->save();
+        $order->update($request->only(['order_code', 'order_date', 'sub_total', 'tax', 'total', 'status', 'user_id']));
 
-
-
-        // foreach ($request->order_items as $id) {
-        //     DB::table('order_items')->whereIn('id', $id)->get()->delete();
-        // }
-        //$request->order_items->delete();
+        $order->orderItems()->delete();
         foreach ($request->order_items as $item) {
-            $orderItem = new OrderItem;
-            $orderItem->name = $item['name'];
-            $orderItem->description = $item['description'];
-            $orderItem->quantity = $item['quantity'];
-            $orderItem->price = $item['price'];
-            $orderItem->order_id = $order->id;
-            $orderItem->product_id = $item['product_id'];
-            $orderItem->save();
+            $item['order_id'] = $order->id;
+            $item = OrderItem::create($item);
         }
-        $order->load(['orderItems']);
+
+        $order->load(['orderItems.product', 'user']);
         return $this->respondJson('Order update successfully.', true, ['order' => $order]);
     }
 
@@ -114,6 +81,7 @@ class OrdersController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+
         return $this->respondJson('Order show successfully.', true);
     }
 }
