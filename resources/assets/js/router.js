@@ -14,6 +14,14 @@ import LayoutLogin from './views/layouts/LayoutLogin.vue'
 // Dashbord
 import Dashboard from './views/dashboard/Dashboard.vue'
 
+// categories
+import CategoryIndex from './views/category/Index.vue'
+import CreateCategory from './views/category/Create.vue'
+
+// products
+import ProductIndex from './views/product/Index.vue'
+import CreateProduct from './views/product/AddProduct.vue'
+
 // basic-ui
 import Cards from './views/basic-ui/Cards.vue'
 import Tabs from './views/basic-ui/Tabs.vue'
@@ -65,6 +73,30 @@ const routes = [
         path: '/',
         component: Dashboard,
         name: 'dashboard'
+      },
+      {
+        path: 'category',
+        component: CategoryIndex,
+        name: 'category.index'
+
+      },
+      {
+        path: 'category/create',
+        component: CreateCategory,
+        name: 'category.create'
+      },
+      {
+        path: 'category/:id/edit',
+        component: CreateCategory,
+        name: 'category.edit'
+      },
+      {
+        path: 'product',
+        component: ProductIndex
+      },
+      {
+        path: 'product/add-product',
+        component: CreateProduct
       },
       {
         path: 'basic-ui/cards',
