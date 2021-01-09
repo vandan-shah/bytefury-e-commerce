@@ -28,35 +28,31 @@ class CustomersRequest extends FormRequest
             'name' => [
                 "required"
             ],
-            'email'=> [
+            'email' => [
                 'required',
                 'email',
                 Rule::unique('users')
             ],
-            'gender'=> [
+            'gender' => [
                 "nullable"
             ],
-            'address'=> [
+            'address' => [
                 "nullable"
             ],
-            'number'=> [
+            'number' => [
                 "nullable"
             ],
-            'password'=> [
+            'password' => [
                 "required"
             ]
         ];
-        if($this->getMethod()=='PUT')
-        {
+        if ($this->getMethod() == 'PUT') {
             $rules['email'] = [
                 'required',
                 'email',
                 Rule::unique('users')->ignore($this->route('customer')),
             ];
-            $rules[
-                'password'
-                ] = 'nullable';
-
+            $rules['password'] = 'nullable';
         }
         return $rules;
     }

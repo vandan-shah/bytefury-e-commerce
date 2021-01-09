@@ -28,7 +28,7 @@ class CategoryRequest extends FormRequest
                 "required"
             ],
             'description' => [
-                "nullable"
+                "required"
             ]
         ];
     }
