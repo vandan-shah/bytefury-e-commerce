@@ -30,7 +30,7 @@ class CategoriesController extends Controller
     {
         $category = Category::create($request->validated());
 
-        return $this->respondJson('Categories Create Successfully', true, ['category' => $category]);
+        return $this->respondJson('Category Create Successfully', true, ['category' => $category]);
     }
 
     /**`
@@ -55,7 +55,7 @@ class CategoriesController extends Controller
     {
         $category->update($request->validated());
 
-        return $this->respondJson('update Categories', true, ['category' => $category]);
+        return $this->respondJson('update Category', true, ['category' => $category]);
     }
 
     /**
@@ -68,6 +68,6 @@ class CategoriesController extends Controller
     {
         $category->delete();
 
-        return $this->respondJson('delete Categories', true);
+        return $this->respondJson('delete Category', true);
     }
 }
