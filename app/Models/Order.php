@@ -27,11 +27,4 @@ class Order extends Model
     {
         return $order;
     }
-    // public function setDateOrder($date)
-    // {
-    //     if ($date) {
-    //         //$date = Carbon::createFromFormat('Y-m-d');
-    //         $this->order['order_date'] = Carbon::createFromFormat('Y-m-d', $date);
-    //     }
-    // }
 }
