@@ -5,8 +5,8 @@ use App\Http\Controllers\Auth\Mobile\LogoutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CategoriesController;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,13 +40,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('customers', CustomersController::class);
 
     Route::apiResource('categories', CategoriesController::class);
-<<<<<<< Updated upstream
-=======
+
 
     Route::apiResource('products', ProductsController::class);
 
     Route::apiResource('orders', OrdersController::class);
 
+
     Route::apiResource('brand',BrandController::class);
->>>>>>> Stashed changes
+
 });

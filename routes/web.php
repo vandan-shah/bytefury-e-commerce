@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Spa\LoginController;
 use App\Http\Controllers\Auth\Spa\LogoutController;
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::post('login', LoginController::class);
 
 Route::get('logout', LogoutController::class);
 
+Route::get('/orders/{order:order_code}', [OrdersController::class, 'show']);
 
 // Move other http requests to the Admin Dashboard App
 // -------------------------------------------------

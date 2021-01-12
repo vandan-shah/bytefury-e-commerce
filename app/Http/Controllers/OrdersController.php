@@ -48,7 +48,6 @@ class OrdersController extends Controller
     public function show(Order $order)
     {
         $order->load(['orderItems.product', 'user']);
-
         return $this->respondJson('Order show successfully.', true, ['order' => $order]);
     }
 
