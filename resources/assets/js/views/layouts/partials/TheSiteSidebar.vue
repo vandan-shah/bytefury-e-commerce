@@ -80,9 +80,46 @@ export default {
           // ]
         },
         {
+          title: 'Brands',
+          icon: `<svg class="w-5 h-5 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>`,
+          active: false,
+          route: '/admin/brand',
+          // items: [
+          //   {
+          //     title: 'Cards',
+          //     route: '/admin/basic-ui/cards',
+          //     active: false
+          //   },
+          //   {
+          //     title: 'Tables',
+          //     route: '/admin/basic-ui/tables',
+          //     active: false
+          //   },
+          //   {
+          //     title: 'Typography',
+          //     route: '/admin/basic-ui/typography',
+          //     active: false
+          //   },
+          //   {
+          //     title: 'Tabs',
+          //     route: '/admin/basic-ui/tabs',
+          //     active: false
+              
+          //   },
+          //   {
+          //     title: 'Modals',
+          //     route: '/admin/basic-ui/modals',
+          //     active: false
+          //   },
+            
+          // ]
+        },
+        {
           title: 'Products',
-          icon: `<svg class="w-5 h-5 mr-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          icon: `<svg class="w-5 h-5 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>`,
           active: false,
           route: '/admin/product',

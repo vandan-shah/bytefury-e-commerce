@@ -4,7 +4,7 @@
       <template v-slot:breadcrumbs>
         <sw-breadcrumb>
           <sw-breadcrumb-item title="Home" />
-          <sw-breadcrumb-item title="Category" to="/admin/category" />
+          <sw-breadcrumb-item title="Categories" to="/admin/category" />
         </sw-breadcrumb>
       </template>
       <template slot="actions">
@@ -19,12 +19,7 @@
         <h3 class="pt-6 sw-section-title">Categories</h3>
         <sw-table-component ref="table" :data="fetchCategory">
           <sw-table-column label="Category" show="name" />
-          <sw-table-column  label="Description" >
-            <template slot-scope="row">
-              <span>Description</span>
-              <span class="truncate">{{row.description}}</span>
-            </template>
-          </sw-table-column>
+          <sw-table-column label="Description" show="description" />
           <sw-table-column label="action">
             <template class="d-inline" slot-scope="row">
               <sw-button variant="primary-outline" tag-name="router-link" :to="`/admin/category/${row.id}/edit`">
@@ -58,10 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('categories', ['categories']),
-    // isEdit() {
-    //         return router.name == 'category.edit'
-    //     }
+    ...mapGetters('categories', ['categories'])
   },
 
   methods: {
@@ -91,7 +83,6 @@ export default {
           currentPage: page
         }
       }
-
     }
   }
 }

@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
                 "required",
             ],
             'url' => [
-                "required",
+                "required"
             ],
             'category_id' => [
                 "required"

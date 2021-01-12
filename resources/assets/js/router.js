@@ -22,6 +22,10 @@ import CreateCategory from './views/category/Create.vue'
 import ProductIndex from './views/product/Index.vue'
 import CreateProduct from './views/product/AddProduct.vue'
 
+// brands
+import BrandIndex from './views/brand/Index.vue'
+import CreateBrand from './views/brand/Create.vue'
+
 // basic-ui
 import Cards from './views/basic-ui/Cards.vue'
 import Tabs from './views/basic-ui/Tabs.vue'
@@ -74,11 +78,11 @@ const routes = [
         component: Dashboard,
         name: 'dashboard'
       },
+      // Category
       {
         path: 'category',
         component: CategoryIndex,
         name: 'category.index'
-
       },
       {
         path: 'category/create',
@@ -90,14 +94,39 @@ const routes = [
         component: CreateCategory,
         name: 'category.edit'
       },
+      // Brand
+      {
+        path: 'brand',
+        component: BrandIndex,
+        name: 'brand.index'
+      },
+      {
+        path: 'brand/create',
+        component: CreateBrand,
+        name: 'brand.create'
+      },
+      {
+        path: 'brand/:id/edit',
+        component: CreateBrand,
+        name: 'brand.edit'
+      },
+      // Product
       {
         path: 'product',
-        component: ProductIndex
+        component: ProductIndex,
+        name: 'product.index'
       },
       {
         path: 'product/add-product',
-        component: CreateProduct
+        component: CreateProduct,
+        name: 'product.add-product'
       },
+      {
+        path: 'product/:id/edit',
+        component: CreateProduct,
+        name: 'product.edit'
+      },
+      // Basic-ui
       {
         path: 'basic-ui/cards',
         component: Cards

@@ -8,7 +8,7 @@ import actions from './actions'
 // import auth from './modules/auth'
 // import brands from './modules/brands'
 import categories from './modules/categories'
-// import products from './modules/products'
+import products from './modules/products'
 // import posts from './modules/posts'
 // import banner from './modules/banner'
 // import dashboard from './modules/dashboard'
@@ -28,7 +28,7 @@ export default new Vuex.Store({
         // brands,
         categories,
         // posts,
-        // products,
+        products
         // banner,
         // dashboard,
         // inquiries

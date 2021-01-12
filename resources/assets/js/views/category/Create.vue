@@ -17,6 +17,7 @@
                 :error="errorUsername"
                 >
                     <sw-input 
+                    :invalid="$v.formData.name.$error"
                     v-model="formData.name"
                     @input="$v.formData.name.$touch()" 
                     />
@@ -30,6 +31,7 @@
                 :error="errorDescription"
                 >
                     <sw-textarea 
+                    :invalid="$v.formData.description.$error"
                     v-model="formData.description"
                     @input="$v.formData.description.$touch()" 
                     />
@@ -81,9 +83,7 @@ export default {
         }
     },
     computed: {
-        // ...mapGetters('categories', ['categories']),
-        isEdit() {
-            // console.log(this.$route) 
+        isEdit() { 
             return this.$route.name === 'category.edit'
         },
         errorUsername() {
@@ -102,10 +102,10 @@ export default {
                 return ''
             }
             if (!this.$v.formData.description.minLength) {
-                return 'Category Name must be at least 10 characters long'
+                return 'Description must be at least 10 characters long'
             } 
             if (!this.$v.formData.description.required) { 
-                return 'Category Name is required'
+                return 'Description is required'
             }
         }
     },
@@ -118,6 +118,12 @@ export default {
     methods: {
         ...mapActions('categories', ['addCategory', 'updateCategory', 'fetchCategory']),
         async Save() {
+            this.$v.formData.$touch()
+            let validate = await this.touchCustomField
+            if (this.$v.$invalid) {
+                return true
+            }
+
             if (this.isEdit) {
                 await this.updateCategory(this.formData) 
             } else {
