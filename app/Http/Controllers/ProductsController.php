@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -12,9 +13,13 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(5);
+        if ($request->limit == 'all') {
+            $products = Product::all();
+        } else {
+            $products = Product::with(['category'])->paginate(5);
+        }
 
         return $this->respondJson('Product Retrieved Successfully', true, ['products' => $products]);
     }

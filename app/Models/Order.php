@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $appends = ['date'];
     protected $guarded = [
         'id'
     ];
@@ -27,11 +28,8 @@ class Order extends Model
     {
         return $order;
     }
-    // public function setDateOrder($date)
-    // {
-    //     if ($date) {
-    //         //$date = Carbon::createFromFormat('Y-m-d');
-    //         $this->order['order_date'] = Carbon::createFromFormat('Y-m-d', $date);
-    //     }
-    // }
+    public function getdateAttribute()
+    {
+        return $this->format('Y-m-d');
+    }
 }
