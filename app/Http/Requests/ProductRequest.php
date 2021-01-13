@@ -31,10 +31,10 @@ class ProductRequest extends FormRequest
             'description' => [
                 "required",
             ],
-            'price' => [
+            'brand_id' => [
                 "required",
             ],
-            'url' => [
+            'price' => [
                 "required",
             ],
             'category_id' => [
@@ -42,11 +42,14 @@ class ProductRequest extends FormRequest
             ]
         ];
         if ($this->getMethod() == 'PUT') {
+
             $rules['name'] = 'nullable';
             $rules['description'] = 'nullable';
             $rules['price'] = 'nullable';
             $rules['url'] = 'nullable';
             $rules['category_id'] = 'nullable';
+            $rules['brand_id']='nullable';
+
         }
         return $rules;
     }

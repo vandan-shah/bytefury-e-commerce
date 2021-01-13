@@ -27,6 +27,7 @@ class CustomersController extends Controller
     public function store(CustomersRequest $request)
     {
         $user = User::create($request->validated());
+
         return $this->respondJson('Customer created successfully.', true, ['user' => $user]);
     }
 
@@ -50,6 +51,7 @@ class CustomersController extends Controller
     public function update(CustomersRequest $request, User $user)
     {
         $user->update($request->validated());
+
         return $this->respondJson('Customer updated successfully.', true, ['user' => $user]);
     }
 
@@ -63,6 +65,7 @@ class CustomersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return $this->respondJson('Customer deleted successfully.', true, []);
     }
 }
