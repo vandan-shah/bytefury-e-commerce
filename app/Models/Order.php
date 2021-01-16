@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $appends = ['date'];
+
+
     protected $guarded = [
         'id'
     ];
@@ -27,9 +28,5 @@ class Order extends Model
     public function show(Order $order)
     {
         return $order;
-    }
-    public function getdateAttribute()
-    {
-        return $this->format('Y-m-d');
     }
 }

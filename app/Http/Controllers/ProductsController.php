@@ -17,9 +17,9 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         if ($request->limit == 'all') {
-            $products = Product::all();
+            $products = Product::with(['category', 'brand'])->get();
         } else {
-            $products = Product::with(['category'])->paginate(5);
+            $products = Product::with(['category', 'brand'])->paginate(5);
         }
 
         return $this->respondJson('Product Retrieved Successfully', true, ['products' => $products]);
@@ -61,6 +61,7 @@ class ProductsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->validated());
+
 
         return $this->respondJson('Product updated successfully.', true, ['product' => $product]);
     }

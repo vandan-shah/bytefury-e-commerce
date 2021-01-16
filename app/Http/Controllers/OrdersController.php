@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
@@ -13,9 +14,13 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::with(['orderItems.product', 'user'])->paginate(5);
+        if ($request->limit == 'all') {
+            $orders = Order::with(['orderItems.product', 'user'])->get();
+        } else {
+            $orders = Order::with(['orderItems.product', 'user'])->paginate(5);
+        }
 
         return $this->respondJson('Order Retrieved Successfully', true, ['orders' => $orders]);
     }
