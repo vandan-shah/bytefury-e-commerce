@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -12,9 +13,13 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::paginate(5);
+        if ($request->limit == 'all') {
+            $categories = Category::all();
+        } else {
+            $categories = Category::paginate(5);
+        }
 
         return $this->respondJson('Categories Retrieved Successfully', true, ['categories' => $categories]);
     }

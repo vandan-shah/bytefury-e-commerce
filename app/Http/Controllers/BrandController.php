@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -12,9 +13,13 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = Brand::paginate(5);
+        if ($request->limit == 'all') {
+            $brands = Brand::all();
+        } else {
+            $brands = Brand::paginate(5);
+        }
 
         return $this->respondJson('Brands Retrieved Successfully', true, ['Brand' => $brands]);
     }
