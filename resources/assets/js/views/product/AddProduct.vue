@@ -15,6 +15,24 @@
                     />
                 </sw-input-group> -->
 
+                <sw-input-group     
+                required
+                variant="horizontal" 
+                label="Brand" 
+                class="my-10"
+                :error="errorBrand"
+                 >
+                    <sw-select
+                    :invalid="$v.productData.selectedBrand.$error"
+                    v-model="productData.selectedBrand"
+                    :options="brands"
+                    :searchable="true"
+                    placeholder="select a Brand"
+                    label="name"
+                    @input="$v.productData.selectedBrand.$touch()" 
+                />
+                </sw-input-group> 
+
                 <sw-input-group
                 required
                 variant="horizontal" 
@@ -84,7 +102,7 @@
 
                 <input type="file" @change="onFileSelected" class="d-flex justify-content-end sw-section-title" variant="primary" />
                 
-                <sw-button variant="primary" class="d-flex" @click="onUpload">Upload</sw-button>
+                <!-- <sw-button variant="primary" class="d-flex" @click.prevent="onUpload">Upload</sw-button> -->
 
             </div>
         </div>
@@ -118,20 +136,26 @@ export default {
     data() {
         return {
             productData: {
+                selectedBrand: null,
                 name: '',
                 description: '',
                 selectedCategory: null,
-                price: ''
-                // url: ''
+                price: '',
+                url: ''
             },
             
+            // selectedCategory: null,
+            // selectedBrand: null,
             selectedFile: null,
 
-            options: [],
+            // options: [],
         }
     },
     validations: {
         productData: {
+            selectedBrand: {
+                required
+            },
             name: {
                 required,
                 minLength: minLength(3)
@@ -151,8 +175,17 @@ export default {
     },
     computed: {
         ...mapGetters('categories', ['categories']),
+        ...mapGetters('brands', ['brands']),
         isEdit() { 
             return this.$route.name === 'product.edit'
+        },
+        errorBrand() {
+            if (!this.$v.productData.selectedBrand.$error) {
+                return ''
+            }
+            if (!this.$v.productData.selectedBrand.required) { 
+                return 'Brand required'
+            }
         },
         errorProductname() {
             if (!this.$v.productData.name.$error) {
@@ -197,7 +230,8 @@ export default {
         }
     },
     created() {
-        this.fetchCategories()
+        this.fetchCategories(),
+        this.fetchBrands()
     },
     mounted() {
         if (this.isEdit) {
@@ -205,17 +239,21 @@ export default {
             return true
         }
     },
+    watch: {
+        
+    },
     methods: {
         ...mapActions('products', ['addProduct', 'updateProduct', 'fetchProduct']),
         ...mapActions('categories', ['fetchCategories']),
-        onUpload() {
-            // var formData = new FormData();
-            // formData.append('image', this.selectedFile, this.selectedFile.name)
-            // axios.post(`/api/products`, formData)
-            // .then(response => {
-            //     console.log(response)
-            // })
-        },
+        ...mapActions('brands', ['fetchBrands']),
+        // onUpload() {
+        //     var formData = new FormData();
+        //     formData.append('image', this.selectedFile, this.selectedFile.name)
+        //     axios.post(`/api/products`, formData)
+        //     .then(response => {
+        //         console.log(response)
+        //     })
+        // },
         async Save() {
             this.$v.productData.$touch()
             let validate = await this.touchCustomField
@@ -237,9 +275,13 @@ export default {
         this.productData = { ...this.productData, ...response.data.data.product }
         },
         onFileSelected(event) {
-            console.log(event)
+            // console.log(event)
             this.selectedFile = event.target.files[0]
-        },
+        }
+        // onBrandSelected(event) {
+        //     console.log(event)
+        //     this.selectedBrand = event.target.files[0]
+        // }
     }
 }
 </script>

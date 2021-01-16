@@ -31,22 +31,28 @@ class ProductRequest extends FormRequest
             'description' => [
                 "required",
             ],
+            // 'brand_id' => [
+            //     "required",
+            // ],
+            // 'url' => [
+            //     "required"
+            // ],
             'price' => [
                 "required",
             ],
-            'url' => [
-                "required"
-            ],
-            'category_id' => [
-                "required"
-            ]
+            // 'category_id' => [
+            //     "required"
+            // ]
         ];
         if ($this->getMethod() == 'PUT') {
+
             $rules['name'] = 'nullable';
             $rules['description'] = 'nullable';
             $rules['price'] = 'nullable';
             $rules['url'] = 'nullable';
             $rules['category_id'] = 'nullable';
+            $rules['brand_id']='nullable';
+
         }
         return $rules;
     }

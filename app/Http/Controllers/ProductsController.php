@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -27,9 +28,11 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $products = Product::create($request->validated());
+        $product = Product::create($request->validated());
 
-        return $this->respondJson('Product Create Successfully', true, ['product' => $products]);
+        //$product->addMediaFromRequest('image')->toMediaCollection();
+
+        return $this->respondJson('Product Create Successfully', true, ['product' => $product]);
     }
 
     /**

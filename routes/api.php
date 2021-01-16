@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Mobile\LoginController;
 use App\Http\Controllers\Auth\Mobile\LogoutController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OrdersController;
@@ -40,7 +41,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('categories', CategoriesController::class);
 
+
     Route::apiResource('products', ProductsController::class);
 
     Route::apiResource('orders', OrdersController::class);
+
+
+    Route::apiResource('brand',BrandController::class);
+
 });

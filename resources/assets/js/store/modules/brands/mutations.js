@@ -17,7 +17,7 @@ export default {
 
   [types.UPDATE_BRAND](state, data) {
     console.log(data, 'data in mutation')
-    let pos = state.brands.findIndex((brand) => brand.id === data.data.brand.id)
+    let pos = state.brands.findIndex((brand) => brand.id === data.data.Brand.id)
 
     state.brands[pos] = data.brand
   },

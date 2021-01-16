@@ -31,7 +31,7 @@ export const fetchProduct = ({ commit, dispatch, state }, id) => {
 
 export const addProduct = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    // console.log(data)
+    console.log(data, 'vandan')
     window.axios
       .post(`/api/products`, data)
       .then((response) => {

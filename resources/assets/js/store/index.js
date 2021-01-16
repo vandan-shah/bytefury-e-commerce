@@ -6,7 +6,7 @@ import mutations from './mutations'
 import actions from './actions'
 
 // import auth from './modules/auth'
-// import brands from './modules/brands'
+import brands from './modules/brands'
 import categories from './modules/categories'
 import products from './modules/products'
 // import posts from './modules/posts'
@@ -25,7 +25,7 @@ export default new Vuex.Store({
 
     modules: {
         // auth,
-        // brands,
+        brands,
         categories,
         // posts,
         products

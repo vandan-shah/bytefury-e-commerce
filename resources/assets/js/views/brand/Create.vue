@@ -17,13 +17,13 @@
                 :error="errorUsername"
                 >
                     <sw-input 
-                    :invalid="$v.formData.name.$error"
-                    v-model="formData.name"
-                    @input="$v.formData.name.$touch()" 
+                    :invalid="$v.brandData.name.$error"
+                    v-model="brandData.name"
+                    @input="$v.brandData.name.$touch()" 
                     />
                 </sw-input-group>
 
-                <sw-input-group
+                <!-- <sw-input-group
                 required
                 variant="horizontal" 
                 label="Description" 
@@ -35,7 +35,7 @@
                     v-model="formData.description"
                     @input="$v.formData.description.$touch()" 
                     />
-                </sw-input-group>
+                </sw-input-group> -->
 
             </div>
         </div>
@@ -64,22 +64,22 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
 export default {
     data() {
         return {
-            formData: {
-                name: '',
-                description: ''
+            brandData: {
+                name: ''
+                // description: ''
             }
         }
     },
     validations: {
-        formData: {
+        brandData: {
             name: {
                 required,
                 minLength: minLength(1)
-            },
-            description: {
-                required,
-                minLength: minLength(10)
             }
+            // description: {
+            //     required,
+            //     minLength: minLength(10)
+            // }
         }
     },
     computed: {
@@ -87,27 +87,27 @@ export default {
             return this.$route.name === 'brand.edit'
         },
         errorUsername() {
-            if (!this.$v.formData.name.$error) {
+            if (!this.$v.brandData.name.$error) {
                 return ''
             }
-            if (!this.$v.formData.name.minLength) {
+            if (!this.$v.brandData.name.minLength) {
                 return 'Brand Name must be at least 1 characters long'
             } 
-            if (!this.$v.formData.name.required) { 
+            if (!this.$v.brandData.name.required) { 
                 return 'Brand Name is required'
             }
-        },
-        errorDescription() {
-            if (!this.$v.formData.description.$error) {
-                return ''
-            }
-            if (!this.$v.formData.description.minLength) {
-                return 'Description must be at least 10 characters long'
-            } 
-            if (!this.$v.formData.description.required) { 
-                return 'Description is required'
-            }
         }
+        // errorDescription() {
+        //     if (!this.$v.formData.description.$error) {
+        //         return ''
+        //     }
+        //     if (!this.$v.formData.description.minLength) {
+        //         return 'Description must be at least 10 characters long'
+        //     } 
+        //     if (!this.$v.formData.description.required) { 
+        //         return 'Description is required'
+        //     }
+        // }
     },
     mounted() {
         if (this.isEdit) {
@@ -118,16 +118,15 @@ export default {
     methods: {
         ...mapActions('brands', ['addBrand', 'updateBrand', 'fetchBrand']),
         async Save() {
-            this.$v.formData.$touch()
+            this.$v.brandData.$touch()
             let validate = await this.touchCustomField
             if (this.$v.$invalid) {
                 return true
             }
-
             if (this.isEdit) {
-                await this.updateBrand(this.formData) 
+                await this.updateBrand(this.brandData) 
             } else {
-                this.addBrand(this.formData)
+                this.addBrand(this.brandData)
             }
             this.$router.push (
                 `/admin/brand`
@@ -135,7 +134,7 @@ export default {
         },
         async loadBrand() {
         let response = await this.fetchBrand(this.$route.params.id)
-        this.formData = { ...this.formData, ...response.data.data.brand }
+        this.brandData = { ...this.brandData, ...response.data.data.Brand }
         }
     }
 }
