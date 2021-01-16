@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
@@ -13,9 +14,13 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(5);
+        if ($request->limit == 'all') {
+            $products = Product::with(['category', 'brand'])->get();
+        } else {
+            $products = Product::with(['category', 'brand'])->paginate(5);
+        }
 
         return $this->respondJson('Product Retrieved Successfully', true, ['products' => $products]);
     }
@@ -56,6 +61,7 @@ class ProductsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->validated());
+
 
         return $this->respondJson('Product updated successfully.', true, ['product' => $product]);
     }

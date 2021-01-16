@@ -11,11 +11,19 @@ class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
-    protected $appends = ['url'];
+
+    protected $appends = [
+        'url'
+    ];
 
     protected $guarded = [
         'id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function brand()
     {
