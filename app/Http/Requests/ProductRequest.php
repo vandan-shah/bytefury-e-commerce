@@ -31,18 +31,15 @@ class ProductRequest extends FormRequest
             'description' => [
                 "required",
             ],
-            // 'brand_id' => [
-            //     "required",
-            // ],
-            // 'url' => [
-            //     "required"
-            // ],
+            'brand_id' => [
+                "required",
+            ],
             'price' => [
                 "required",
             ],
-            // 'category_id' => [
-            //     "required"
-            // ]
+            'category_id' => [
+                "required"
+            ]
         ];
         if ($this->getMethod() == 'PUT') {
 

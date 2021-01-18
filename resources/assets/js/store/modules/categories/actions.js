@@ -6,7 +6,12 @@ export const fetchCategories = ({ commit, dispatch, state }, params) => {
       .get(`/api/categories`, { params })
       .then((response) => {
         // console.log(response.data.data.categories.data, 'action');
-        commit(types.SET_CATEGORIES, response.data.data.categories.data)
+        if (params) {
+          commit(types.SET_CATEGORIES, response.data.data.categories)
+        } else {
+          commit(types.SET_CATEGORIES, response.data.data.categories.data)
+        }
+        
         // commit(types.SET_TOTAL_CATEGORIES, response.data.data.categories.total)
         resolve(response)
       })

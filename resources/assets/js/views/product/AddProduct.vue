@@ -21,15 +21,15 @@
                 label="Brand" 
                 class="my-10"
                 :error="errorBrand"
-                 >
+                >
                     <sw-select
-                    :invalid="$v.productData.selectedBrand.$error"
-                    v-model="productData.selectedBrand"
+                    :invalid="$v.selectedBrand.$error"
+                    v-model="selectedBrand"
                     :options="brands"
                     :searchable="true"
                     placeholder="select a Brand"
                     label="name"
-                    @input="$v.productData.selectedBrand.$touch()" 
+                    @input="$v.selectedBrand.$touch()"
                 />
                 </sw-input-group> 
 
@@ -69,14 +69,14 @@
                  :error="errorCategory"
                  >
                     <sw-select
-                    :invalid="$v.productData.selectedCategory.$error"
-                    v-model="productData.selectedCategory"
+                    :invalid="$v.selectedCategory.$error"
+                    v-model="selectedCategory"
                     :options="categories"
                     :searchable="true"
                     placeholder="select a category"
                     label="name"
-                    @input="$v.productData.selectedCategory.$touch()" 
-                />
+                    @input="$v.selectedCategory.$touch()"
+                    />
                 </sw-input-group> 
                 
 
@@ -136,26 +136,31 @@ export default {
     data() {
         return {
             productData: {
-                selectedBrand: null,
+                brand_id: '',
                 name: '',
                 description: '',
-                selectedCategory: null,
-                price: '',
-                url: ''
+                category_id: '',
+                price: ''
             },
             
-            // selectedCategory: null,
-            // selectedBrand: null,
-            selectedFile: null,
+            selectedCategory: null,
+            selectedBrand: null,
+            selectedFile: null
 
             // options: [],
         }
     },
     validations: {
+        selectedBrand: {
+            required
+        },
+        selectedCategory: {
+            required
+        },
         productData: {
-            selectedBrand: {
-                required
-            },
+            // brand_id: {
+            //     required
+            // },
             name: {
                 required,
                 minLength: minLength(3)
@@ -164,9 +169,9 @@ export default {
                 required,
                 minLength: minLength(10)
             },
-            selectedCategory: {
-                required
-            },
+            // category_id: {
+            //     required
+            // },
             price: {
                 required,
                 minLength: minLength(2)
@@ -180,10 +185,10 @@ export default {
             return this.$route.name === 'product.edit'
         },
         errorBrand() {
-            if (!this.$v.productData.selectedBrand.$error) {
+            if (!this.$v.selectedBrand.$error) {
                 return ''
             }
-            if (!this.$v.productData.selectedBrand.required) { 
+            if (!this.$v.selectedBrand.required) { 
                 return 'Brand required'
             }
         },
@@ -210,10 +215,10 @@ export default {
             }
         },
         errorCategory() {
-            if (!this.$v.productData.selectedCategory.$error) {
+            if (!this.$v.selectedCategory.$error) {
                 return ''
             }
-            if (!this.$v.productData.selectedCategory.required) { 
+            if (!this.$v.selectedCategory.required) { 
                 return 'Category required'
             }
         },
@@ -224,14 +229,18 @@ export default {
             if (!this.$v.productData.price.minLength) {
                 return 'Price must be at least 2 characters long'
             } 
-            if (!this.$v.productData.name.required) { 
+            if (!this.$v.productData.price.required) { 
                 return 'Price is required'
             }
         }
     },
     created() {
-        this.fetchCategories(),
-        this.fetchBrands()
+        this.fetchCategories({
+            limit: 'all'
+        }),
+        this.fetchBrands({
+            limit: 'all'
+        })
     },
     mounted() {
         if (this.isEdit) {
@@ -255,29 +264,45 @@ export default {
         //     })
         // },
         async Save() {
-            this.$v.productData.$touch()
-            let validate = await this.touchCustomField
+            this.$v.$touch()
             if (this.$v.$invalid) {
                 return true
             }
+            let pData = new FormData();
+            pData.append('brand_id', this.selectedBrand.id)
+            pData.append('name', this.productData.name)
+            pData.append('description', this.productData.description)
+            pData.append('category_id', this.selectedCategory.id)
+            pData.append('price', this.productData.price)
+            pData.append('image', this.selectedFile)
+            pData.append('_method', 'PUT')
 
             if (this.isEdit) {
-                await this.updateProduct(this.productData) 
+                await this.updateProduct({
+                    id: this.$route.params.id,
+                    data: pData
+                }) 
             } else {
-                this.addProduct(this.productData)
+                this.addProduct(pData)
             }
             this.$router.push (
                 `/admin/product`
             )
         },
         async loadProduct() {
-        let response = await this.fetchProduct(this.$route.params.id)
-        this.productData = { ...this.productData, ...response.data.data.product }
+            let response = await this.fetchProduct(this.$route.params.id)
+            this.productData = { ...this.productData, ...response.data.data.product }
+            this.selectedBrand = response.data.data.product.brand
+            this.selectedCategory = response.data.data.product.category
         },
+        // params: {
+        //     limit: 'all'
+        // },
         onFileSelected(event) {
             // console.log(event)
             this.selectedFile = event.target.files[0]
         }
+
         // onBrandSelected(event) {
         //     console.log(event)
         //     this.selectedBrand = event.target.files[0]
