@@ -8,13 +8,7 @@
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
             <div class="col-span-4">
-
-                <!-- <sw-input-group variant="horizontal" label="Brand" class="my-10">
-                    <sw-input
-                    v-model="productData.brand" 
-                    />
-                </sw-input-group> -->
-
+                
                 <sw-input-group     
                 required
                 variant="horizontal" 
@@ -101,8 +95,6 @@
                 </sw-input-group>
 
                 <input type="file" @change="onFileSelected" class="d-flex justify-content-end sw-section-title" variant="primary" />
-                
-                <!-- <sw-button variant="primary" class="d-flex" @click.prevent="onUpload">Upload</sw-button> -->
 
             </div>
         </div>
@@ -147,7 +139,6 @@ export default {
             selectedBrand: null,
             selectedFile: null
 
-            // options: [],
         }
     },
     validations: {
@@ -158,9 +149,6 @@ export default {
             required
         },
         productData: {
-            // brand_id: {
-            //     required
-            // },
             name: {
                 required,
                 minLength: minLength(3)
@@ -169,9 +157,6 @@ export default {
                 required,
                 minLength: minLength(10)
             },
-            // category_id: {
-            //     required
-            // },
             price: {
                 required,
                 minLength: minLength(2)
@@ -255,14 +240,6 @@ export default {
         ...mapActions('products', ['addProduct', 'updateProduct', 'fetchProduct']),
         ...mapActions('categories', ['fetchCategories']),
         ...mapActions('brands', ['fetchBrands']),
-        // onUpload() {
-        //     var formData = new FormData();
-        //     formData.append('image', this.selectedFile, this.selectedFile.name)
-        //     axios.post(`/api/products`, formData)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        // },
         async Save() {
             this.$v.$touch()
             if (this.$v.$invalid) {
@@ -295,18 +272,10 @@ export default {
             this.selectedBrand = response.data.data.product.brand
             this.selectedCategory = response.data.data.product.category
         },
-        // params: {
-        //     limit: 'all'
-        // },
         onFileSelected(event) {
             // console.log(event)
             this.selectedFile = event.target.files[0]
         }
-
-        // onBrandSelected(event) {
-        //     console.log(event)
-        //     this.selectedBrand = event.target.files[0]
-        // }
     }
 }
 </script>
