@@ -23,9 +23,10 @@ mix.webpackConfig({
 mix
   .js('resources/assets/js/app.js', 'public/assets/js/')
   .sass('resources/assets/sass/app.scss', 'public/assets/css/')
+  .sass('resources/assets/sass/front.scss', 'public/assets/css/')
   .options({
     processCssUrls: false,
-    postCss: [tailwindcss('./tailwind.config.js')]
+    postCss: [ tailwindcss('./tailwind.config.js')]
   })
 
 if (!mix.inProduction()) {

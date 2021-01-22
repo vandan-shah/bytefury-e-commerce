@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Auth\Spa\LoginController;
 use App\Http\Controllers\Auth\Spa\LogoutController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +24,14 @@ Route::post('login', LoginController::class);
 Route::get('logout', LogoutController::class);
 
 Route::get('/orders/{order:order_code}', [OrdersController::class, 'show']);
+
+Route::get('/home',[FrontController::class, 'index']);
+
+Route::get('home/products',[FrontController::class, 'product']);
+
+Route::get('/categories/{category}/product', [FrontController::class, 'products'])->name('category.product');
+
+Route::get('product',[FrontController::class,'product']);
 
 // Move other http requests to the Admin Dashboard App
 // -------------------------------------------------
