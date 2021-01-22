@@ -1,8 +1,4 @@
 {
     "/assets/js/app.js": "/assets/js/app.js",
-    "/assets/css/app.css": "/assets/css/app.css",
-    "/assets/css/front.css": "/assets/css/front.css",
-    "/assets/js/app.js.map": "/assets/js/app.js.map",
-    "/assets/css/app.css.map": "/assets/css/app.css.map",
-    "/assets/css/front.css.map": "/assets/css/front.css.map"
+    "/assets/js/app.js.map": "/assets/js/app.js.map"
 }
