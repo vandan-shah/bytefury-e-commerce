@@ -21,20 +21,32 @@ mix.webpackConfig({
  */
 
 mix
-  .js('resources/assets/js/app.js', 'public/assets/js/')
-  .sass('resources/assets/sass/app.scss', 'public/assets/css/')
-  .sass('resources/assets/sass/front.scss', 'public/assets/css/')
+  .js('resources/assets/js/app.js', 'public/admin/js/')
+  .js('resources/assets/front/front.js', 'public/front/js/')
+  .sass('resources/assets/sass/app.scss', 'public/admin/css/')
+.sass('resources/assets/sass/front.scss', 'public/front/css/')
   .options({
     processCssUrls: false,
     postCss: [ tailwindcss('./tailwind.config.js')]
   })
 
-if (!mix.inProduction()) {
-  mix
-    .webpackConfig({
-      devtool: 'source-map'
-    })
-    .sourceMaps()
+// if (!mix.inProduction()) {
+//   mix
+//     .webpackConfig({
+//       devtool: 'source-map'
+//     })
+//     .sourceMaps()
+// } else {
+//   mix.version()
+// }
+
+
+
+if (mix.inProduction()) {
+  mix.version();
+  // .purgeCss()
 } else {
-  mix.version()
+  mix.webpackConfig({
+      devtool: "source-map",
+  }).sourceMaps();
 }

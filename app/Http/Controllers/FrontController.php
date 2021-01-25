@@ -20,19 +20,16 @@ class FrontController extends Controller
         return view('front.home.index', ['categories'=>$category]);
     }
 
-    public function product()
-    {
-        $product = Product::all();
-        return view('front.products.index', ['products'=>$product]);
-    }
-
+    // public function product()
+    // {
+    //     $product = Product::all();
+    //     return view('front.products.index', ['products'=>$product]);
+    // }
 
     public function products(Category $category)
     {   
-        return $category->load('product'); 
-
-        //dd($data->url); 
-        //return view('front.products.index', ['products'=>$data]);
+        $category = $category->load('product');
+        return view('front.products.index', ['category'=>$category]);
 
     }
 }

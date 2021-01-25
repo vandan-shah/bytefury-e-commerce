@@ -9,6 +9,18 @@ import utils from './helpers/utilities'
 import router from './router.js'
 import store from './store/index'
 
+////////////inline template////////////////////
+
+// import HoverHover from './views/category/HoverHover.vue'
+
+// Vue.component('hover-hover', HoverHover)
+
+
+
+
+
+
+
 Vue.use(Vuelidate)
 
 require('./bootstrap')

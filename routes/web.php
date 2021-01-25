@@ -36,9 +36,9 @@ Route::get('product',[FrontController::class,'product']);
 // Move other http requests to the Admin Dashboard App
 // -------------------------------------------------
 
-Route::get('/admin/{vue?}', function () {
-    return view('app');
-})->where('vue', '[\/\w\.-]*')->name('admin')->middleware(['redirect-if-unauthenticated']);
+// Route::get('/admin/{vue?}', function () {
+//     return view('app');
+// })->where('vue', '[\/\w\.-]*')->name('admin')->middleware(['redirect-if-unauthenticated']);
 
 
 // Move other http requests to the Vue App

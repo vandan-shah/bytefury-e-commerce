@@ -25,6 +25,7 @@
               @input="$v.selectedBrand.$touch()"
             />
           </sw-input-group>
+          
           <sw-input-group
             required
             variant="horizontal"
@@ -51,26 +52,39 @@
               @input="$v.productData.description.$touch()"
             />
           </sw-input-group>
-          <!-- <sw-input-group
+
+          <sw-input-group
             required
             variant="horizontal"
             label="Category"
             class="my-10"
             :error="errorCategory"
-          > -->
-          <a
-            v-show="active"
-            :options="categories"
-          >{{ selectedCategory }}</a>
-          <div @mouseover="mouseOver">Categories</div>
+          >
+            <sw-select
+              :invalid="$v.selectedCategory.$error"
+              v-model="selectedCategory"
+              :options="categories"
+              :searchable="true"
+              placeholder="select a Category"
+              label="name"
+              @input="$v.selectedCategory.$touch()"
+            />
+          </sw-input-group>
+          <!-- label="name" -->
+          <!-- v-for="(pn, index) in productData.name" :key="index" -->
           <!-- <a
-            v-show="active"
+            v-show="active" 
+            v-for="(category, index) in categories" :key="index"
+          >{{ category.name }}<br></a>
+          <div @click="mouseOver">dCategories</div> -->
+          <!-- <a
+            v-show="active" 
             v-model="selectedCategory"
             label="name"
             @mouseover="mouseOver"
             >categories</a
           > -->
-          <!-- </sw-input-group> -->
+          
           <sw-input-group
             required
             variant="horizontal"
@@ -126,11 +140,13 @@
   </div>
 </template>
 <script>
+
 import * as FormData from 'form-data'
 import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
 import Multiselect from 'vue-multiselect'
 import { required, minLength, between } from 'vuelidate/lib/validators'
+
 export default {
   data() {
     return {
@@ -144,7 +160,6 @@ export default {
       selectedCategory: null,
       selectedBrand: null,
       selectedFile: null,
-      active: false,
     }
   },
   validations: {
@@ -229,9 +244,9 @@ export default {
     this.fetchCategories({
       limit: 'all',
     }),
-      this.fetchBrands({
-        limit: 'all',
-      })
+    this.fetchBrands({
+      limit: 'all',
+    })
   },
   mounted() {
     if (this.isEdit) {
@@ -256,7 +271,7 @@ export default {
       pData.append('category_id', this.selectedCategory.id)
       pData.append('price', this.productData.price)
       pData.append('image', this.selectedFile)
-      pData.append('_method', 'PUT')
+      // pData.append('_method', 'PUT')
       if (this.isEdit) {
         await this.updateProduct({
           id: this.$route.params.id,
@@ -276,10 +291,7 @@ export default {
     onFileSelected(event) {
       // console.log(event)
       this.selectedFile = event.target.files[0]
-    },
-    mouseOver: function () {
-      this.active = !this.active
-    },
+    }
   },
 }
 </script>
