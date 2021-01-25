@@ -57,7 +57,7 @@ export default {
             window.axios
                 .post('/login', self.loginData)
                 .then((response) => {
-                    self.$router.push('/admin')
+                    self.$router.replace('/admin')
                 })
                 .catch((err) => {
                     console.log(err);

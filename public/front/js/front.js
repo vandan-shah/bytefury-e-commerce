@@ -12783,7 +12783,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\laragon\www\ecommerce\resources\assets\front\front.js */"./resources/assets/front/front.js");
+module.exports = __webpack_require__(/*! E:\laragon\www\bytefury-e-commerce\resources\assets\front\front.js */"./resources/assets/front/front.js");
 
 
 /***/ })

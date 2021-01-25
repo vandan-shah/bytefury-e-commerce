@@ -74,9 +74,8 @@ const routes = [
     children: [
       // Dashboard
       {
-        path: '/',
-        component: Dashboard,
-        name: 'dashboard'
+        path: 'dashboard',
+        component: Dashboard
       },
       // Category
       {

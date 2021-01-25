@@ -19,6 +19,8 @@
             <div>
                 <h3 class="pt-6 sw-section-title">Products</h3>
                 <sw-table-component ref="table" :data="fetchProduct">
+                    <img alt="image" src="url" />
+                    <!-- <sw-table-column label="Image" <img alt="image" :src="url"> /> -->
                     <sw-table-column label="Brand" show="brand.name" />
                     <sw-table-column label="Product Name" show="name" />
                     <sw-table-column label="Description" show="description" />
