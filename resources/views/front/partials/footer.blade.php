@@ -6,6 +6,16 @@
       </svg> -->
       <span class="ml-3 text-xl">NeoCyber!</span>
     </a>
-    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2021 NeoCyber — All Rights Reserved</p>
+    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 flex-1">© 2021 NeoCyber — All Rights Reserved</p>
+    <form method="POST" action="customerlogout">
+      <a href="{{route('customerlogout')}}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-red-400 rounded text-base mt-4 md:mt-0 mr-1 hover:text-gray-900">
+        @auth
+        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        @endauth
+        @guest
+          
+        @endguest
+      </a>
+    </form>
   </div>
 </footer>

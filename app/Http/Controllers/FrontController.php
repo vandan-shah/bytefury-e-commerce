@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FrontController extends Controller
 {
@@ -17,7 +21,8 @@ class FrontController extends Controller
         //return view('front.home.home',['categories'=>$category]);
         
         $category = Category::all();
-        return view('front.home.index', ['categories'=>$category]);
+        $username = Auth::user();
+        return view('front.home.index', compact('category','username'));
     }
 
     // public function product()
@@ -29,7 +34,57 @@ class FrontController extends Controller
     public function products(Category $category)
     {   
         $category = $category->load('product');
-        return view('front.products.index', ['category'=>$category]);
-
+        $username = Auth::user();
+        // return view('front.display-products.index', ['category'=>$category]);
+        return view('front.display-products.index', compact('category','username'));
     }
+
+    public function product(Product $product)
+    {
+        $username = Auth::user();
+        // return view('front.display-single-product.index', ["product"=>$product]);
+        return view('front.display-single-product.index', compact('product','username'));
+    }
+
+    public function user()
+    {
+        $username = Auth::user();
+        return view('front.partials.header', ['user'=>$username]);
+    }
+
+    public function update(Request $request)
+    {
+        //$user = Auth::user();
+        return [
+            'email' => 'email|unique:users,email,'.$this->Auth::user(),
+            'address' => 'address|unique:users,address,'.$this->Auth::user(),
+            'number' => 'number|unique:users,number,'.$this->Auth::user(),
+        ];
+
+        $data = new User;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->gender = $request->gender;
+        $data->address = $request->address;
+        $data->number = $request->number;
+        $data->password = Hash::make($request->input('password'));
+        $data->save();
+        return redirect('home');
+    }
+
+    public function userprofile()
+    {
+        $username = Auth::user();
+        return view('customer.list', ['user'=>$username]);
+    }
+    /* public function login()
+    {
+        return view('front.login.login');
+    } */
+
+    // public function image($filename)
+    // {
+    //     $path = storage_path('app/public'.$filename);
+    //     $file = File::get($path);
+    // }
 }
