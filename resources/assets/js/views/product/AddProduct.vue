@@ -270,19 +270,21 @@ export default {
       pData.append('description', this.productData.description)
       pData.append('category_id', this.selectedCategory.id)
       pData.append('price', this.productData.price)
-      pData.append('url', this.selectedFile)
+      pData.append('image', this.selectedFile)
       // pData.append('_method', 'PUT')
       if (this.isEdit) {
         pData.append('_method', 'PUT')
         await this.updateProduct({
           id: this.$route.params.id,
-          data: pData,
+          data: pData
         })
       } else {
         pData.append('_method', 'POST')
         this.addProduct(pData)
       }
-      this.$router.push(`/admin/product`)
+      this.$router.push (
+        `/admin/product`
+      )
     },
     async loadProduct() {
       let response = await this.fetchProduct(this.$route.params.id)

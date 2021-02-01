@@ -50,7 +50,7 @@ export const updateProduct = ({ commit, dispatch, state }, {data, id}) => {
   return new Promise((resolve, reject) => {
     console.log({data, id}, 'vandan')
     window.axios
-      .put(`/api/products/${id}`, data)
+      .post(`/api/products/${id}`, data)
       .then((response) => {
         if (response.data.success) {
           commit(types.UPDATE_PRODUCT, response.data)
