@@ -35,6 +35,8 @@ class ProductsController extends Controller
     {
         $product = Product::create($request->validated());
 
+        $product->with(['category', 'brand']);
+
         $product->addMediaFromRequest('image')->toMediaCollection();
 
         return $this->respondJson('Product Create Successfully', true, ['product' => $product]);
@@ -48,6 +50,9 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
+        $product->load(['category', 'brand']);
+        // $product->category;
+        // $product->brand;
         return $this->respondJson('Product displayed successfully.', true, ['product' => $product]);
     }
 
@@ -62,6 +67,9 @@ class ProductsController extends Controller
     {
         $product->update($request->validated());
 
+        if ($request->hasFile('image')) {
+            $product->addMediaFromRequest('image')->toMediaCollection('avatar');
+        }
 
         return $this->respondJson('Product updated successfully.', true, ['product' => $product]);
     }

@@ -14,6 +14,18 @@ import LayoutLogin from './views/layouts/LayoutLogin.vue'
 // Dashbord
 import Dashboard from './views/dashboard/Dashboard.vue'
 
+// categories
+import CategoryIndex from './views/category/Index.vue'
+import CreateCategory from './views/category/Create.vue'
+
+// products
+import ProductIndex from './views/product/Index.vue'
+import CreateProduct from './views/product/AddProduct.vue'
+
+// brands
+import BrandIndex from './views/brand/Index.vue'
+import CreateBrand from './views/brand/Create.vue'
+
 // basic-ui
 import Cards from './views/basic-ui/Cards.vue'
 import Tabs from './views/basic-ui/Tabs.vue'
@@ -62,10 +74,58 @@ const routes = [
     children: [
       // Dashboard
       {
-        path: '/',
-        component: Dashboard,
-        name: 'dashboard'
+        path: 'dashboard',
+        component: Dashboard
       },
+      // Category
+      {
+        path: 'category',
+        component: CategoryIndex,
+        name: 'category.index'
+      },
+      {
+        path: 'category/create',
+        component: CreateCategory,
+        name: 'category.create'
+      },
+      {
+        path: 'category/:id/edit',
+        component: CreateCategory,
+        name: 'category.edit'
+      },
+      // Brand
+      {
+        path: 'brand',
+        component: BrandIndex,
+        name: 'brand.index'
+      },
+      {
+        path: 'brand/create',
+        component: CreateBrand,
+        name: 'brand.create'
+      },
+      {
+        path: 'brand/:id/edit',
+        component: CreateBrand,
+        name: 'brand.edit'
+      },
+      // Product
+      {
+        path: 'product',
+        component: ProductIndex,
+        name: 'product.index'
+      },
+      {
+        path: 'product/add-product',
+        component: CreateProduct,
+        name: 'product.add-product'
+      },
+      {
+        path: 'product/:id/edit',
+        component: CreateProduct,
+        name: 'product.edit'
+      },
+      // Basic-ui
       {
         path: 'basic-ui/cards',
         component: Cards

@@ -17,9 +17,13 @@ class LoginController extends Controller
     public function __invoke(LoginRequest $request)
     {
         if (Auth::attempt($request->validated())) {
-            return redirect('/admin');
+            return response()->json([
+                'success' => true
+            ]);
         }
 
-        return redirect('/');
+        return response()->json([
+            'success' => false
+        ]);
     }
 }

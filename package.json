@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.21.1",
         "cross-env": "^7.0",
         "eslint": "^7.11.0",
         "eslint-config-prettier": "^6.13.0",
@@ -25,15 +25,18 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "@bytefury/spacewind": "^0.3.4",
+        "@bytefury/spacewind": "^0.4.1",
         "@tailwindcss/postcss7-compat": "^2.0.2",
         "@vue-hero-icons/outline": "^1.6.3",
         "@vue-hero-icons/solid": "^1.6.3",
         "autoprefixer": "^9.8.6",
+        "form-data": "^3.0.0",
         "postcss": "^7.0.35",
         "tailwindcss": "^1.9.5",
         "vue": "^2.6.12",
+        "vue-multiselect": "^2.1.6",
         "vue-router": "^3.4.7",
+        "vuelidate": "^0.7.6",
         "vuex": "^3.5.1"
     }
 }

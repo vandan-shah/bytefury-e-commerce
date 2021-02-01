@@ -38,7 +38,7 @@ Route::get('product',[FrontController::class,'product']);
 
 Route::get('/admin/{vue?}', function () {
     return view('app');
-})->where('vue', '[\/\w\.-]*')->name('admin')->middleware(['redirect-if-unauthenticated']);
+})->where('vue', '[\/\w\.-]*')->name('admin');
 
 
 // Move other http requests to the Vue App

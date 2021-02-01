@@ -3,10 +3,11 @@
 
 <head>
     <title>Spacewind-Laravel</title>
-    <link href="{{mix("/assets/css/app.css")}}" rel="stylesheet" type="text/css">
+    <link href="{{mix("/admin/css/app.css")}}" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
     <link rel="icon" href="/assets/img/spacewind-favicon.png" type="image/gif" sizes="16x16">
+    <script src="https://kit.fontawesome.com/b86940d49d.js" crossorigin="anonymous"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -17,7 +18,7 @@
             <router-view></router-view>
         </transition>
     </div>
-    <script type="text/javascript" src="{{mix('/assets/js/app.js')}}"></script>
+    <script type="text/javascript" src="{{mix('/admin/js/app.js')}}"></script>
 </body>
 
 </html>

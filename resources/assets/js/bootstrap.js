@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import SpaceWind from '@bytefury/spacewind'
 
+
+// Vue.component('hover-hover', require('./views/category/HoverHover.vue'));
 /**
  * Theme
  */

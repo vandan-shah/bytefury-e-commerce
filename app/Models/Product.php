@@ -34,4 +34,9 @@ class Product extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl();
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('avatar')->singleFile();
+    }
 }

@@ -1,8 +1,10 @@
 {
-    "/assets/js/app.js": "/assets/js/app.js",
-    "/assets/css/app.css": "/assets/css/app.css",
-    "/assets/css/front.css": "/assets/css/front.css",
-    "/assets/js/app.js.map": "/assets/js/app.js.map",
-    "/assets/css/app.css.map": "/assets/css/app.css.map",
-    "/assets/css/front.css.map": "/assets/css/front.css.map"
+    "/admin/js/app.js": "/admin/js/app.js",
+    "/admin/css/app.css": "/admin/css/app.css",
+    "/front/css/front.css": "/front/css/front.css",
+    "/admin/js/app.js.map": "/admin/js/app.js.map",
+    "/admin/css/app.css.map": "/admin/css/app.css.map",
+    "/front/css/front.css.map": "/front/css/front.css.map",
+    "/front/js/front.js": "/front/js/front.js",
+    "/front/js/front.js.map": "/front/js/front.js.map"
 }
