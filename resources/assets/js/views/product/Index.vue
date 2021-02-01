@@ -19,14 +19,17 @@
             <div>
                 <h3 class="pt-6 sw-section-title">Products</h3>
                 <sw-table-component ref="table" :data="fetchProduct">
-                    <img alt="image" src="url" />
-                    <!-- <sw-table-column label="Image" <img alt="image" :src="url"> /> -->
+                    <sw-table-column label="Image">
+                      <template>
+                        <img alt="image" src="url" />
+                      </template>
+                    </sw-table-column> 
                     <sw-table-column label="Brand" show="brand.name" />
                     <sw-table-column label="Product Name" show="name" />
                     <sw-table-column label="Description" show="description" />
                     <sw-table-column label="Category" show="category.name" />
                     <sw-table-column label="Price" show="price" />
-                    <sw-table-column label="action">
+                    <sw-table-column label="Action">
                         <template class="d-inline" slot-scope="row">
                             <sw-button variant="primary-outline" tag-name="router-link" :to="`/admin/product/${row.id}/edit`">
                                 <svg class="h-5 mr-1 -ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

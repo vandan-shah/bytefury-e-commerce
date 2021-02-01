@@ -32,7 +32,7 @@ class Product extends Model implements HasMedia
 
     public function getUrlAttribute()
     {
-        return $this->getFirstMediaUrl();
+        return $this->getFirstMediaUrl('avatar');
     }
 
     public function registerMediaCollections(): void
