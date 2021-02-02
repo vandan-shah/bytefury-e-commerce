@@ -17,39 +17,19 @@ class FrontController extends Controller
     use InteractsWithMedia;
     public function index()
     {
-        // $category = Category::all();
-        //return view('front.home.home',['categories'=>$category]);
-        
         $category = Category::all();
-        $username = Auth::user();
-        return view('front.home.index', compact('category','username'));
+        return view('front.home.index', compact('category'));
     }
 
-    // public function product()
-    // {
-    //     $product = Product::all();
-    //     return view('front.products.index', ['products'=>$product]);
-    // }
-
     public function products(Category $category)
-    {   
+    {
         $category = $category->load('product');
-        $username = Auth::user();
-        // return view('front.display-products.index', ['category'=>$category]);
-        return view('front.display-products.index', compact('category','username'));
+        return view('front.display-products.index', compact('category'));
     }
 
     public function product(Product $product)
     {
-        $username = Auth::user();
-        // return view('front.display-single-product.index', ["product"=>$product]);
-        return view('front.display-single-product.index', compact('product','username'));
-    }
-
-    public function user()
-    {
-        $username = Auth::user();
-        return view('front.partials.header', ['user'=>$username]);
+        return view('front.display-single-product.index', compact('product'));
     }
 
     public function update(Request $request)
@@ -72,11 +52,7 @@ class FrontController extends Controller
         return redirect('home');
     }
 
-    public function userprofile()
-    {
-        $username = Auth::user();
-        return view('customer.list', ['user'=>$username]);
-    }
+
     /* public function login()
     {
         return view('front.login.login');

@@ -15,7 +15,8 @@
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.7",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-medialibrary": "^9.0.0"
+        "spatie/laravel-medialibrary": "^9.0.0",
+        "overtrue/laravel-shopping-cart": "~2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
