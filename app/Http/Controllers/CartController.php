@@ -15,7 +15,7 @@ class CartController extends Controller
     public function index()
     {
         $cartitems = \ShoppingCart::all();
-        //dd($cartitems);
+        // dd($cartitems);
         return view('front.cart.index', compact('cartitems'));
     }
 
