@@ -16,7 +16,7 @@ class CartController extends Controller
     {
         $cartitems = \ShoppingCart::all();
         //dd($cartitems);
-        return view('front.cart.main', compact('cartitems'));
+        return view('front.cart.index', compact('cartitems'));
     }
 
     /**

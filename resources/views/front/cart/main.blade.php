@@ -57,10 +57,10 @@
         </div>
       </div>
     </div>
-  </body> --}}
+  </body>
+ --}}
 
-
- <head>
+  <head>
         <style scoped>
         .abc {
             float: right;
@@ -76,7 +76,7 @@
 </head>
 
 <div class="container">
-<h3>Your Product List page is here</h3>
+<h3>My Cart</h3>
 
 
 <table class="table">
@@ -106,7 +106,6 @@
             <form action ="{{'/cart/'.$item->__raw_id}}" method="POST">
                 @csrf
                 @method('PUT')
-                {{-- <input type="text" name="qty" value="{{$item->qty}}"> --}}
                 <input type="number" value="1" min="1" max="10"  name="qty" value="{{$item->qty}}">
                 <input type="submit" class="btn btn-sm btn-default" value="Edit">
 
@@ -127,5 +126,4 @@
   </tbody>
 </table>
 </div>
-
 

@@ -35,9 +35,9 @@
         {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24"> --}}
             <i class="ml-3 fas fa-shopping-cart"></i>
 
-        <span class="alert-badge">
+        <div class="alert alert-danger"  role="alert">
             {{ShoppingCart::count()}}
-        </span>
+        </div>
           {{-- <path d="M5 12h14M12 5l7 7-7 7"></path> --}}
         {{-- </svg> --}}
         </a>

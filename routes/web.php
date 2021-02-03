@@ -57,7 +57,7 @@ Route::get('profile',[FrontController::class,'userprofile']);
 Route::post('profile',[FrontController::class,'update'])->name('update');
 
 
-Route::view('view_cart','front.cart.index')->name('view_cart');
+// Route::view('view_cart','front.cart.index')->name('view_cart');
 
 Route::resource('cart',CartController::class);
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
