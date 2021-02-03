@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/front/components/Count.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/front/components/Count.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -97,11 +97,26 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    active: false;
+    return {
+      count: 1,
+      total: ''
+    };
   },
   methods: {
-    open: function open() {
-      this.active = !this.active;
+    increment: function increment() {
+      this.count += 1;
+    },
+    decrement: function decrement() {
+      if (this.count > 1) {
+        this.count -= 1;
+      } else {
+        this.count = this.count;
+      }
+    }
+  },
+  computed: {
+    totalPrice: function totalPrice() {
+      this.count;
     }
   }
 });
@@ -12705,16 +12720,16 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/assets/front/components/HoverHover.vue":
-/*!**********************************************************!*\
-  !*** ./resources/assets/front/components/HoverHover.vue ***!
-  \**********************************************************/
+/***/ "./resources/assets/front/components/Count.vue":
+/*!*****************************************************!*\
+  !*** ./resources/assets/front/components/Count.vue ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HoverHover_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HoverHover.vue?vue&type=script&lang=js& */ "./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Count_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Count.vue?vue&type=script&lang=js& */ "./resources/assets/front/components/Count.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
@@ -12724,7 +12739,7 @@ var render, staticRenderFns
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _HoverHover_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  _Count_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
   render,
   staticRenderFns,
   false,
@@ -12736,22 +12751,22 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/front/components/HoverHover.vue"
+component.options.__file = "resources/assets/front/components/Count.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/assets/front/components/Count.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/assets/front/components/Count.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HoverHover_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./HoverHover.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/front/components/HoverHover.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HoverHover_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Count_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Count.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/front/components/Count.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Count_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -12766,10 +12781,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_HoverHover_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/HoverHover.vue */ "./resources/assets/front/components/HoverHover.vue");
+/* harmony import */ var _components_Count_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Count.vue */ "./resources/assets/front/components/Count.vue");
+ // import HoverHover from './components/HoverHover.vue';
+// Vue.component('hover-hover', HoverHover);
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('hover-hover', _components_HoverHover_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('count', _components_Count_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#front'
 });

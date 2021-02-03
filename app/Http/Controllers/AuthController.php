@@ -25,15 +25,21 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         // 
-        
+        $validateData = $request->validate([
+            'email' => 'required|max:255|email',
+            'password' => 'required',
+        ]);
         $user = array(
             'email' => $request->get('email'),
             'password' => $request->get('password')
         );
         if (Auth::attempt($user)) {
             return redirect('/home');
-        } else {
-            return redirect()->back();
+        } 
+        else {
+            return back()->withErrors([
+                'password' => 'Credentials do not match our records.',
+            ]);
         }
     }
 
