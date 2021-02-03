@@ -1,13 +1,16 @@
-<section class="section w-full">
+<section class="section w-full bg-gray-900">
   <div class="container mx-auto">
-    <h1 class="absolute z-10 top-1/2 text-white text-5xl">Don’t worry,<br> we have it.</h1>
+
+      <h1 class="absolute z-10 text-white bottom-1/2 text-5xl">Don’t worry,<br> we have it.</h1>
+      <a href="/allproducts" class="absolute z-10 text-white top-1/2 text-2xl mt-10 p-2 rounded-lg border-2 border-white-900 hover:bg-white hover:text-gray-900">Show me more</a>
+
   </div>
   <div>
-    <div class="color-overlay">
+    <div>
+      <video class="opacity-80" autoplay loop muted>
+        <source src="assets/vid/titan.mp4" type="video/mp4">
+      </video>
     </div>
-    <video autoplay loop muted>
-      <source src="assets/vid/titan.mp4" type="video/mp4">
-    </video>
   </div>
 </section>
 

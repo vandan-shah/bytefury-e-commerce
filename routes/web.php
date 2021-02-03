@@ -55,7 +55,7 @@ Route::get('profile',[FrontController::class,'userprofile']);
 
 Route::post('profile',[FrontController::class,'update'])->name('update');
 
-
+Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
 
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
 

@@ -12,7 +12,7 @@ export default {
   },
 
     [types.ADD_PRODUCT](state, data) {
-      console.log(data, 'vandan')
+      // console.log(data, "abcd")
     state.products.push(data.product)
   },
 

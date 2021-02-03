@@ -77,6 +77,12 @@ class FrontController extends Controller
         $username = Auth::user();
         return view('customer.list', ['user'=>$username]);
     }
+    
+    public function allProduct()
+    {
+        $product = Product::all();
+        return view('front.display-all-products.index', ['products'=>$product]);
+    }
     /* public function login()
     {
         return view('front.login.login');

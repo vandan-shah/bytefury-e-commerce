@@ -9,33 +9,31 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $req)
+    public function register(Request $request)
     {
         $user = new User;
-        $user->name = $req->input('name');
-        $user->email = $req->input('email');
-        $user->gender = $req->input('gender');
-        $user->address = $req->input('address');
-        $user->number = $req->input('number');
-        $user->password = Hash::make($req->input('password'));
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->gender = $request->input('gender');
+        $user->address = $request->input('address');
+        $user->number = $request->input('number');
+        $user->password = Hash::make($request->input('password'));
         $user->save();
         return redirect('/customerlogin');
     }
 
-    public function login(Request $req)
+    public function login(Request $request)
     {
         // 
-
+        
         $user = array(
-            'email'=>$req->get('email'),
-            'password'=>$req->get('password')
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
         );
-        if(Auth::attempt($user))
-        {
+        if (Auth::attempt($user)) {
             return redirect('/home');
-        }
-        else {
-            return "login failed";
+        } else {
+            return redirect()->back();
         }
     }
 
@@ -44,6 +42,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/home');
     }
-
-
 }
