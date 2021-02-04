@@ -9,33 +9,48 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $req)
+    public function register(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:15',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'address' => 'required|min:5|max:50',
+            'number' => 'required|numeric|digits_between:10,10',
+            'password' => 'required|min:6|max:20',
+        ]);
+
         $user = new User;
-        $user->name = $req->input('name');
-        $user->email = $req->input('email');
-        $user->gender = $req->input('gender');
-        $user->address = $req->input('address');
-        $user->number = $req->input('number');
-        $user->password = Hash::make($req->input('password'));
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->gender = $request->input('gender');
+        $user->address = $request->input('address');
+        $user->number = $request->input('number');
+        $user->password = Hash::make($request->input('password'));
         $user->save();
         return redirect('/customerlogin');
     }
 
-    public function login(Request $req)
+    public function login(Request $request)
     {
-        // 
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:20',
+        ], [
+            // 'email.required' => 'Email is Required'
+        ]);
 
         $user = array(
-            'email'=>$req->get('email'),
-            'password'=>$req->get('password')
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
         );
-        if(Auth::attempt($user))
-        {
+        if (Auth::attempt($user)) {
             return redirect('/home');
-        }
-        else {
-            return "login failed";
+        } else {
+            return back()->withErrors([
+                'password' => 'The provided credentials do not match our records.',
+                //'password' => 'password is worng'
+            ]);
         }
     }
 
@@ -44,6 +59,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/home');
     }
-
-
 }
