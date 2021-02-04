@@ -57,6 +57,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        \ShoppingCart::destroy();
         return redirect('/home');
     }
 }

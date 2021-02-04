@@ -109,6 +109,11 @@
 <h3>My Cart</h3>
 
 
+
+
+
+<h3>{{ShoppingCart::countRows()}} Items</h3>
+
 <table class="table">
   <thead>
     <tr>
@@ -136,9 +141,8 @@
             <form action ="{{'/cart/'.$item->__raw_id}}" method="POST">
                 @csrf
                 @method('PUT')
-                <input type="number" value="1" min="1" max="10"  name="qty" value="{{$item->qty}}">
+                <input type="text"  name="qty" value="{{$item->qty}}">
                 <input type="submit" class="btn btn-sm btn-default" value="Edit">
-
             </form>
 
         </td>
@@ -148,7 +152,7 @@
             <form action="{{'/cart/'.$item->__raw_id}}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" class="btn btn-sm btn-default" value="Remove">
+            <input type="submit" class="bg-white" value="Remove">
             </form>
         </td>
     </tr>
@@ -156,4 +160,18 @@
   </tbody>
 </table>
 </div> --}}
+
+{{ShoppingCart::totalPrice()}}
+
+<form action="{{route('cart.store')}}" method="POST">
+    @csrf
+    <input type="submit" class="btn btn-primary" value="Checkout">
+
+</form>
+
+</div>
+
+
+
+
 
