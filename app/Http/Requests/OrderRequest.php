@@ -31,10 +31,10 @@ class OrderRequest extends FormRequest
                 "required"
             ],
             'sub_total' => [
-                "required"
+                "nullable"
             ],
             'tax' => [
-                "required"
+                "nullable"
             ],
             'total' => [
                 "required"
@@ -59,7 +59,7 @@ class OrderRequest extends FormRequest
                 "required"
             ],
             'order_items.*.sub_total' => [
-                "required"
+                "nullable"
             ],
             'order_items.*.total' => [
                 "required"

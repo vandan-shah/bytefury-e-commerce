@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -38,11 +39,12 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(OrderRequest $request)
     {
         $user_id = Auth::user()->id;
         $cartitems = \ShoppingCart::all();
         $total_price = \ShoppingCart::totalPrice();
+
         $order = new Order;
         $order->order_code ='#' . str_pad($user_id + 1, 8, "0", STR_PAD_LEFT);
         $order->order_date = date('Y-m-d');
