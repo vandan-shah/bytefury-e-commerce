@@ -36,7 +36,7 @@
             <i class="ml-3 fas fa-shopping-cart"></i>
 
         <div class="alert alert-danger"  role="alert">
-            {{ShoppingCart::count()}}
+            {{ShoppingCart::countRows()}}
         </div>
           {{-- <path d="M5 12h14M12 5l7 7-7 7"></path> --}}
         {{-- </svg> --}}

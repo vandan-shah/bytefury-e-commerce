@@ -34,12 +34,6 @@ class FrontController extends Controller
 
     public function update(Request $request)
     {
-        //$user = Auth::user();
-        return [
-            'email' => 'email|unique:users,email,'.$this->Auth::user(),
-            'address' => 'address|unique:users,address,'.$this->Auth::user(),
-            'number' => 'number|unique:users,number,'.$this->Auth::user(),
-        ];
 
         $data = new User;
         $data->name = $request->name;

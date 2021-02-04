@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -15,7 +18,7 @@ class CartController extends Controller
     public function index()
     {
         $cartitems = \ShoppingCart::all();
-        // dd($cartitems);
+        //dd($cartitems);
         return view('front.cart.index', compact('cartitems'));
     }
 
@@ -37,7 +40,34 @@ class CartController extends Controller
      */
     public function store()
     {
-        //
+        $user_id = Auth::user()->id;
+        $cartitems = \ShoppingCart::all();
+        $total_price = \ShoppingCart::totalPrice();
+        $order = new Order;
+        $order->order_code ='#' . str_pad($user_id + 1, 8, "0", STR_PAD_LEFT);
+        $order->order_date = date('Y-m-d');
+        $order->total = $total_price;
+        $order->user_id = $user_id;
+        $order->save();
+
+        $order_items = Order::all();
+        foreach ($order_items as $data) {
+            $order_id = $data->id;
+        }
+
+        foreach ($cartitems as $item) {
+            $OrderItems = new OrderItem;
+            $OrderItems->name = $item->name;
+            $OrderItems->quantity = $item->qty;
+            $OrderItems->price = $item->price;
+            $OrderItems->total = $item->total;
+            $OrderItems->product_id = $item->id;
+            $OrderItems->order_id = $order_id;
+            $OrderItems->save();
+
+        }
+        return redirect()->back();
+
     }
 
     /**
@@ -90,4 +120,6 @@ class CartController extends Controller
         \ShoppingCart::remove($id);
         return redirect()->back();
     }
+
+
 }

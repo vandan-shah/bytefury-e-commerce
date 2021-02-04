@@ -24,8 +24,8 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // 
-        
+        //
+
         $user = array(
             'email' => $request->get('email'),
             'password' => $request->get('password')
@@ -40,6 +40,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        \ShoppingCart::destroy();
         return redirect('/home');
     }
 }
