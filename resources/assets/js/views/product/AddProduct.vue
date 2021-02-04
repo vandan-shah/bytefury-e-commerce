@@ -288,6 +288,7 @@ export default {
     },
     async loadProduct() {
       let response = await this.fetchProduct(this.$route.params.id)
+      // console.log(response, "abcd")
       this.productData = { ...this.productData, ...response.data.data.product }
       this.selectedBrand = response.data.data.product.brand
       this.selectedCategory = response.data.data.product.category

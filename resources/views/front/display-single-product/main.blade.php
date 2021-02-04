@@ -1,18 +1,18 @@
-<section class="text-gray-600 body-font overflow-hidden">
+<section class="overflow-hidden text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-      <div class="lg:w-4/5 mx-auto flex flex-wrap">
-        <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{ $product->url }}" />
-        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-          <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $product->brand->name }}</h2>
-          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
-          <p class="leading-relaxed">{{ $product->description }}</p>
-          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
-          <div class="flex">
-            <span class="title-font font-medium text-2xl text-gray-900">{{ $product->price }}</span>
-            <input type="number" value="1" min="1" max="10" />
-            <button class="add-to-cart-btn flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add to Cart</button>
-          </div>
-        </div>
+      <div class="flex flex-wrap mx-auto lg:w-4/5">
+            <img alt="ecommerce" class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="{{ $product->url }}" />
+            <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
+              <h2 class="text-sm tracking-widest text-gray-500 title-font" name="brand_name">{{ $product->brand->name }}</h2>
+              <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font" name="product_name">{{ $product->name }}</h1>
+              <p class="leading-relaxed">{{ $product->description }}</p>
+              <div class="flex items-center pb-5 mt-6 mb-5 border-b-2 border-gray-100"></div>
+              <div class="flex">
+                <span class="text-2xl font-medium text-gray-900 title-font" name="product_price"><i class="fas fa-rupee-sign"></i> {{ $product->price}}</span>
+
+                <a href="{{route('cart.edit',$product->id)}}" class="flex px-6 py-2 ml-auto text-white bg-indigo-500 border-0 rounded add-to-cart-btn focus:outline-none hover:bg-indigo-600">Add to Cart</a>
+              </div>
+            </div>
       </div>
     </div>
 </section>

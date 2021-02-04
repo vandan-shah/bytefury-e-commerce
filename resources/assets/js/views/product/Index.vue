@@ -20,8 +20,8 @@
                 <h3 class="pt-6 sw-section-title">Products</h3>
                 <sw-table-component ref="table" :data="fetchProduct">
                     <sw-table-column label="Image">
-                      <template>
-                        <img alt="image" src="url" />
+                      <template slot-scope="row">
+                        <img alt="image" :src="row.url" />
                       </template>
                     </sw-table-column> 
                     <sw-table-column label="Brand" show="brand.name" />

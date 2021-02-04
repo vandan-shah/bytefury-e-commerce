@@ -17,15 +17,13 @@ class FrontController extends Controller
     public function index()
     {
         $category = Category::all();
-        $username = Auth::user();
-        return view('front.home.index', compact('category', 'username'));
+        return view('front.home.index', compact('category'));
     }
 
     public function products(Category $category)
     {
         $category = $category->load('product');
-        $username = Auth::user();
-        return view('front.display-products.index', compact('category', 'username'));
+        return view('front.display-products.index', compact('category'));
     }
 
     public function product(Product $product)
@@ -38,6 +36,7 @@ class FrontController extends Controller
     {
         $username = Auth::user();
         return view('front.partials.header', ['user' => $username]);
+        return view('front.display-single-product.index', compact('product'));
     }
 
     public function update(FrontRequest $request)
@@ -63,9 +62,17 @@ class FrontController extends Controller
         return redirect('/home');
     }
 
+
     public function userprofile()
     {
         $user = User::find(Auth::user()->id);
         return view('customer.list', ['user' => $user]);
     }
+
+    public function allProduct()
+    {
+        $product = Product::all();
+        return view('front.display-all-products.index', ['products'=>$product]);
+    }
+   
 }

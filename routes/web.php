@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\Spa\LoginController;
 use App\Http\Controllers\Auth\Spa\LogoutController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
@@ -56,7 +57,10 @@ Route::get('profile',[FrontController::class,'userprofile']);
 Route::post('profile',[FrontController::class,'update'])->name('update');
 
 
+// Route::view('view_cart','front.cart.index')->name('view_cart');
+Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
 
+Route::resource('cart',CartController::class);
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
 
 // Route::view('/Register', 'Register');
