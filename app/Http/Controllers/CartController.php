@@ -39,7 +39,7 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request)
+    public function store()
     {
         $user_id = Auth::user()->id;
         $cartitems = \ShoppingCart::all();

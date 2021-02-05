@@ -68,7 +68,6 @@ Route::group( ['middleware' => 'auth'],function () {
     Route::view('update_status','front.admin.status');
     Route::get('update_status',[StatusController::class,'list']);
 
-    //Route::get('edit/{id}', [StatusController::class, 'edit']);
     Route::post('edit/{id}', [StatusController::class, 'update']);
 
 });
