@@ -60,7 +60,7 @@
   </body>
  --}}
 
-  <head>
+<head>
         <style scoped>
         .abc {
             float: right;
@@ -100,7 +100,6 @@
     @foreach($cartitems as $item)
     <tr>
         <td>
-
             @if (isset($item[0]) && isset($item[0]['url']))
                 <img src="{{$item[0]['url']}}" alt="img">
             @endif

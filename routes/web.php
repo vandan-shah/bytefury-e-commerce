@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,11 @@ Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProd
 Route::group( ['middleware' => 'auth'],function () {
 
     Route::resource('cart', CartController::class);
+
+    Route::view('update_status','front.admin.status');
+    Route::get('update_status',[StatusController::class,'list']);
+
+    Route::post('edit/{id}', [StatusController::class, 'update']);
 
 });
 
