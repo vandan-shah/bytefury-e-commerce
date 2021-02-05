@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomersRequest;
+use App\Http\Requests\FrontRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Facade\FlareClient\Stacktrace\File;
@@ -32,17 +34,20 @@ class FrontController extends Controller
         return view('front.display-single-product.index', compact('product'));
     }
 
-    public function update(Request $request)
+    public function update(FrontRequest $request)
     {
 
-        $data = new User;
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->gender = $request->gender;
-        $data->address = $request->address;
-        $data->number = $request->number;
-        $data->password = Hash::make($request->input('password'));
-        $data->save();
+        // $data = new User;
+        // $data->name = $request->name;
+        // $data->email = $request->email;
+        // $data->gender = $request->gender;
+        // $data->address = $request->address;
+        // $data->number = $request->number;
+        // $data->password = Hash::make($request->input('password'));
+        // $data->save();
+        // return redirect('home');
+        $data = $request->validated();
+        User::find(Auth::user()->id)->update($data);
         return redirect('home');
     }
 
