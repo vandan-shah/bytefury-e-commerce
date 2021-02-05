@@ -87,6 +87,7 @@
 <table class="table">
   <thead>
     <tr>
+        <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Brand</th>
         <th scope="col">Quantity</th>
@@ -98,6 +99,13 @@
   <tbody>
     @foreach($cartitems as $item)
     <tr>
+        <td>
+
+            @if (isset($item[0]) && isset($item[0]['url']))
+                <img src="{{$item[0]['url']}}" alt="img">
+            @endif
+        </td>
+
         <td>{{$item->name}}</td>
 
         <td>

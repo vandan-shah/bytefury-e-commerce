@@ -92,8 +92,9 @@ class CartController extends Controller
     public function edit($id)
     {
         $product = Product::with('brand')->find($id);
+        $url = $product->url;
         $brand = $product->brand->name;
-        $row = \ShoppingCart::add($id, $product->name,1, $product->price,[['brand' => $brand]]);
+        $row = \ShoppingCart::add($id, $product->name,1, $product->price,[['brand' => $brand,'url'=>$url]]);
         return back();
     }
 
