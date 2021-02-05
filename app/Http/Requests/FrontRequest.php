@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class CustomersRequest extends FormRequest
+class FrontRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +23,18 @@ class CustomersRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'name' => [
-                "required"
+                "nullable"
             ],
             'email' => [
-                'required',
-                'email',
-                Rule::unique('users')
+                "nullable"
             ],
             'gender' => [
                 "nullable"
             ],
             'address' => [
-                "required"
+                "nullable"
             ],
             'number' => [
                 "required"
@@ -46,14 +43,5 @@ class CustomersRequest extends FormRequest
                 "required"
             ]
         ];
-        if ($this->getMethod() == 'PUT') {
-            $rules['email'] = [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($this->route('customer')),
-            ];
-            $rules['password'] = 'nullable';
-        }
-        return $rules;
     }
 }

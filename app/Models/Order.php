@@ -29,4 +29,9 @@ class Order extends Model
     {
         return $order;
     }
+
+    // public function getEventEndAttribute($date)
+    // {
+    //     return Carbon::parse($date)->format('Y-m-d');
+    // }
 }
