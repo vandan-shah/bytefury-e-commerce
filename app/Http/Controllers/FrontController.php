@@ -6,13 +6,9 @@ use App\Http\Requests\CustomersRequest;
 use App\Http\Requests\FrontRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Facade\FlareClient\Stacktrace\File;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class FrontController extends Controller
 {
@@ -36,16 +32,6 @@ class FrontController extends Controller
 
     public function update(FrontRequest $request)
     {
-
-        // $data = new User;
-        // $data->name = $request->name;
-        // $data->email = $request->email;
-        // $data->gender = $request->gender;
-        // $data->address = $request->address;
-        // $data->number = $request->number;
-        // $data->password = Hash::make($request->input('password'));
-        // $data->save();
-        // return redirect('home');
         $data = $request->validated();
         User::find(Auth::user()->id)->update($data);
         return redirect('home');
@@ -54,8 +40,8 @@ class FrontController extends Controller
 
     public function userprofile()
     {
-        $username = Auth::user();
-        return view('customer.list', ['user'=>$username]);
+        $user = User::find(Auth::user()->id);
+        return view('customer.list', ['user' => $user]);
     }
 
     public function allProduct()
@@ -63,14 +49,5 @@ class FrontController extends Controller
         $product = Product::all();
         return view('front.display-all-products.index', ['products'=>$product]);
     }
-    /* public function login()
-    {
-        return view('front.login.login');
-    } */
 
-    // public function image($filename)
-    // {
-    //     $path = storage_path('app/public'.$filename);
-    //     $file = File::get($path);
-    // }
 }
