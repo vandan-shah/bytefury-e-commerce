@@ -96,10 +96,15 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    price: {
+      type: String,
+      "default": '0'
+    }
+  },
   data: function data() {
     return {
-      count: 1,
-      total: ''
+      count: 1
     };
   },
   methods: {
@@ -116,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     totalPrice: function totalPrice() {
-      this.count;
+      return this.price * this.count;
     }
   }
 });

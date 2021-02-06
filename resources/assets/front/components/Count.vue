@@ -1,10 +1,15 @@
 <script>
 
 export default {
+    props: {
+        price: {
+            type: String,
+            default: '0',
+        }
+    },
     data() {
         return {
-            count: 1,
-            total: ''
+            count: 1
         }
     },
     methods: {
@@ -21,7 +26,7 @@ export default {
     },
     computed: {
         totalPrice() {
-            this.count
+            return this.price * this.count
         }
     }
 }
