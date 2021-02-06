@@ -68,7 +68,9 @@ class CartController extends Controller
             $OrderItems->save();
 
         }
-        return redirect()->back();
+        \ShoppingCart::destroy();
+        return redirect('/order_success');
+
 
     }
 

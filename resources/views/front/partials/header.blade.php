@@ -31,13 +31,13 @@
         </svg> --}}
       {{-- </a> --}}
       <a href="{{route('cart.index')}}" class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">
-        Cart
+        Cart({{ ShoppingCart::count() }})
         {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24"> --}}
             <i class="ml-3 fas fa-shopping-cart"></i>
-
+{{--
         <div class="alert alert-danger"  role="alert">
-            {{ShoppingCart::countRows()}}
-        </div>
+            {{ShoppingCart::count()}}
+        </div> --}}
           {{-- <path d="M5 12h14M12 5l7 7-7 7"></path> --}}
         {{-- </svg> --}}
         </a>

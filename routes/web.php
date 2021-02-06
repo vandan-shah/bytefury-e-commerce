@@ -72,7 +72,7 @@ Route::group( ['middleware' => 'auth'],function () {
 
 });
 
-
+Route::view('order_success', 'front.order-success.index');
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
 
 // Route::view('/Register', 'Register');
