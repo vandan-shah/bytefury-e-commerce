@@ -61,7 +61,7 @@ Route::post('profile',[FrontController::class,'update'])->name('update');
 // Route::view('view_cart','front.cart.index')->name('view_cart');
 Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
 
-Route::group( ['middleware' => 'auth'],function () {
+// Route::group( ['middleware' => 'auth'],function () {
 
     Route::resource('cart', CartController::class);
 
@@ -70,7 +70,7 @@ Route::group( ['middleware' => 'auth'],function () {
 
     Route::post('edit/{id}', [StatusController::class, 'update']);
 
-});
+// });
 
 Route::view('order_success', 'front.order-success.index');
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
