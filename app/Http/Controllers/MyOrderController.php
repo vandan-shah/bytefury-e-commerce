@@ -13,6 +13,10 @@ class MyOrderController extends Controller
     {
         $id = Auth::id();
         $data =  Order::with(['orderItems'])->where('user_id',$id)->where('status','Approved')->get();
-        return view('front.order.index', compact('data'));
+        foreach($data as $item){
+        }
+        $order_id = $item->id;
+        $count = OrderItem::with(['order'])->where('order_id',$order_id)->count();
+        return view('front.order.index', compact('data','count'));
     }
 }
