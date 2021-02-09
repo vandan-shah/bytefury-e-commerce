@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MyOrderController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,9 @@ Route::post('profile',[FrontController::class,'update'])->name('update');
 
 // Route::view('view_cart','front.cart.index')->name('view_cart');
 Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
+
+Route::view('myorders','front.order.index');
+Route::get('myorders', [MyOrderController::class, 'display']);
 
 Route::group( ['middleware' => 'auth'],function () {
 

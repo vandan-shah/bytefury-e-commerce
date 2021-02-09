@@ -37,7 +37,7 @@ class ProductsController extends Controller
 
         $product->with(['category', 'brand']);
 
-        $product->addMediaFromRequest('image')->toMediaCollection();
+        $product->addMediaFromRequest('image')->toMediaCollection('avatar');
 
         return $this->respondJson('Product Create Successfully', true, ['product' => $product]);
     }

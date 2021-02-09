@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Providers;
-
 use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +7,6 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,7 +18,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Bootstrap any application services.
      *
@@ -30,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::model('customer', User::class);
-
         View::share([
             'categories' => Category::all(),
             'brands' => Brand::orderBy('name')->get(),
@@ -38,3 +33,18 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

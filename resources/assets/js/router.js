@@ -18,13 +18,19 @@ import Dashboard from './views/dashboard/Dashboard.vue'
 import CategoryIndex from './views/category/Index.vue'
 import CreateCategory from './views/category/Create.vue'
 
+// brands
+import BrandIndex from './views/brand/Index.vue'
+import CreateBrand from './views/brand/Create.vue'
+
 // products
 import ProductIndex from './views/product/Index.vue'
 import CreateProduct from './views/product/AddProduct.vue'
 
-// brands
-import BrandIndex from './views/brand/Index.vue'
-import CreateBrand from './views/brand/Create.vue'
+// orders
+import OrderIndex from './views/orders/Index.vue'
+import ViewOrder from './views/orders/ViewOrder.vue'
+import Approved from './views/orders/Approved.vue'
+import Rejected from './views/orders/Rejected.vue'
 
 // basic-ui
 import Cards from './views/basic-ui/Cards.vue'
@@ -124,6 +130,27 @@ const routes = [
         path: 'product/:id/edit',
         component: CreateProduct,
         name: 'product.edit'
+      },
+      // Order
+      {
+        path: 'order',
+        component: OrderIndex,
+        name: 'order.index'
+      },
+      {
+        path: 'order/:id',
+        component: ViewOrder,
+        name: 'product.view-order'
+      },
+      {
+        path: 'approved',
+        component: Approved,
+        name: 'order.approved'
+      },
+      {
+        path: 'rejected',
+        component: Rejected,
+        name: 'order.rejected'
       },
       // Basic-ui
       {

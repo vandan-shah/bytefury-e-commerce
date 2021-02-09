@@ -48,13 +48,4 @@
 
 </tbody>
 </table>
-{{-- <form action="/action_page.php" method="">
- <label>Status:</label>
-  <select id="status" name="status">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <input type="submit">
-</form> --}}
+
