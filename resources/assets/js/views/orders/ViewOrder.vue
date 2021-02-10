@@ -9,10 +9,10 @@
                 </sw-breadcrumb>
             </template>
             <template slot="actions">
-                <sw-button class="mr-5" tag-name="router-link" to ="/admin/order" variant="primary">
+                <sw-button @click="approveOrder()" class="mr-5" variant="primary">
                     Approve
                 </sw-button>
-                <sw-button tag-name="router-link" to ="/admin/order" variant="danger">
+                <sw-button @click="rejectOrder()" variant="danger">
                     Reject
                 </sw-button>
             </template>
@@ -61,7 +61,8 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   data() {
     return {
-      isRequestOnGoing: true
+      isRequestOnGoing: true,
+      approveURL: `orders/{id}/approve`
     }
   },
   computed: {
@@ -69,7 +70,7 @@ export default {
   },
 
   methods: {
-    ...mapActions('orders', ['fetchOrder']),
+    ...mapActions('orders', ['fetchOrder', 'approveStatus', 'rejectStatus']),
    async onDelete(id) {
       await this.deleteOrder(id)
       this.$refs.table.refresh()
@@ -91,6 +92,12 @@ export default {
       return {
         data: response.data.data.order.order_items
       }
+    },
+    approveOrder() {
+      this.approveStatus(this.$route.params.id)
+    },
+    rejectOrder() {
+      this.rejectStatus(this.$route.params.id)
     }
   }
 }

@@ -30,12 +30,12 @@ class OrderRequest extends FormRequest
             'order_date' => [
                 "required"
             ],
-            'sub_total' => [
-                "nullable"
-            ],
-            'tax' => [
-                "nullable"
-            ],
+            // 'sub_total' => [
+            //     "nullable"
+            // ],
+            // 'tax' => [
+            //     "nullable"
+            // ],
             'total' => [
                 "required"
             ],
@@ -49,18 +49,18 @@ class OrderRequest extends FormRequest
             'order_items.*.name' => [
                 "required"
             ],
-            'order_items.*.description' => [
-                "nullable"
-            ],
+            // 'order_items.*.description' => [
+            //     "nullable"
+            // ],
             'order_items.*.quantity' => [
                 "required"
             ],
             'order_items.*.price' => [
                 "required"
             ],
-            'order_items.*.sub_total' => [
-                "nullable"
-            ],
+            // 'order_items.*.sub_total' => [
+            //     "nullable"
+            // ],
             'order_items.*.total' => [
                 "required"
             ],

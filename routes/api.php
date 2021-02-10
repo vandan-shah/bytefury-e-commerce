@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('orders', OrdersController::class);
 
     Route::apiResource('brand', BrandController::class);
+
+    Route::post('orders/{id}/approve',[StatusController::class, 'approve']);
+
+    Route::post('orders/{id}/reject',[StatusController::class, 'reject']);
 });

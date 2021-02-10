@@ -69,12 +69,9 @@ Route::group( ['middleware' => 'auth'],function () {
 
     Route::resource('cart', CartController::class);
 
-    Route::view('update_status','front.admin.status');
-    Route::get('update_status',[StatusController::class,'list']);
-
-    Route::post('edit/{id}', [StatusController::class, 'update']);
-
 });
+
+
 
 Route::view('order_success', 'front.order-success.index');
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
