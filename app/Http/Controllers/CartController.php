@@ -46,7 +46,8 @@ class CartController extends Controller
         $total_price = \ShoppingCart::totalPrice();
 
         $order = new Order;
-        $order->order_code ='#' . str_pad($user_id + 1, 8, "0", STR_PAD_LEFT);
+        //$order->order_code ='#' . str_pad( $this->id, 20, "0", STR_PAD_LEFT);
+        $order->order_code ='#' .rand();
         $order->order_date = date('Y-m-d');
         $order->total = $total_price;
         $order->user_id = $user_id;

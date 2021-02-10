@@ -12,11 +12,7 @@ class MyOrderController extends Controller
     public function display()
     {
         $id = Auth::id();
-        $data =  Order::with(['orderItems'])->where('user_id',$id)->where('status','Approved')->get();
-        foreach($data as $item){
-        }
-        $order_id = $item->id;
-        $count = OrderItem::with(['order'])->where('order_id',$order_id)->count();
-        return view('front.order.index', compact('data','count'));
+        $data =  Order::with(['orderItems'])->where('user_id',$id)->get();
+        return view('front.order.index', compact('data'));
     }
 }

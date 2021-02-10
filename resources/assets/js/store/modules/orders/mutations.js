@@ -3,7 +3,7 @@ import * as types from './mutation-types'
 export default {
 
   [types.SET_ORDERS](state, orders) {
-    // console.log('mutation', categories);
+    // console.log('mutation', orders);
     state.orders = orders
   },
 
