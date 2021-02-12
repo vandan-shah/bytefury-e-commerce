@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\MyOrderController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Auth;
@@ -61,16 +62,16 @@ Route::post('profile',[FrontController::class,'update'])->name('update');
 // Route::view('view_cart','front.cart.index')->name('view_cart');
 Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
 
-// Route::group( ['middleware' => 'auth'],function () {
+Route::view('myorders','front.order.index');
+Route::get('myorders', [MyOrderController::class, 'display']);
+
+Route::group( ['middleware' => 'auth'],function () {
 
     Route::resource('cart', CartController::class);
 
-    Route::view('update_status','front.admin.status');
-    Route::get('update_status',[StatusController::class,'list']);
+});
 
-    Route::post('edit/{id}', [StatusController::class, 'update']);
 
-// });
 
 Route::view('order_success', 'front.order-success.index');
 // Route::get('image/{filename}',[FrontController::class,'image'])->name('image');

@@ -14,7 +14,7 @@ class CreateColumnStatusToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('status')->change()->default('pending');
+            $table->string('status')->change()->default('Pending');
         });
     }
 

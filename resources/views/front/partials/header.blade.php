@@ -13,10 +13,24 @@
       </nav>
       {{-- <a href="{{ route('customerlogin') }}" class="inline-flex items-center px-3 py-1 mt-4 mr-1 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0"> --}}
         @auth
-          <a href="/profile" class="inline-flex items-center px-3 py-1 mt-4 mr-1 text-base border-0 rounded outline-gray-200 focus:outline-gray-200 hover:bg-gray-200 md:mt-0">
+        <div class="">
+
+          <div class="dropdown inline-block relative">
+            <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+              <span class="mr-1">{{ Auth::user()->name }}</span>
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+            </button>
+            <ul class="dropdown-menu z-50 absolute hidden text-gray-700 pt-1">
+              <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/profile"><i class="mr-2 fas fa-user"></i> Profile</a></li>
+              <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="/myorders"><i class="mr-2 fas fa-shopping-basket"></i> Order</a></li>
+            </ul>
+          </div>
+        
+        </div>
+          {{-- <a href="/profile" class="inline-flex items-center px-3 py-1 mt-4 mr-1 text-base border-0 rounded outline-gray-200 focus:outline-gray-200 hover:bg-gray-200 md:mt-0">
             {{ Auth::user()->name }}
             <i class="ml-3 fas fa-user"></i>
-          </a>
+          </a> --}}
         @endauth
         @guest
           <a href="{{ route('customerlogin') }}" class="inline-flex items-center px-3 py-1 mt-4 mr-1 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">
@@ -31,7 +45,7 @@
         </svg> --}}
       {{-- </a> --}}
       <a href="{{route('cart.index')}}" class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">
-        Cart({{ ShoppingCart::count() }})
+        Cart({{ ShoppingCart::countRows() }})
         {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24"> --}}
             <i class="ml-3 fas fa-shopping-cart"></i>
 {{--
@@ -43,3 +57,5 @@
         </a>
     </div>
 </header>
+
+

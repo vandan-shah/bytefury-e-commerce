@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
-    public function list()
+    public function approve($id)
     {
-        $data = Order::all()->where('status','Approved');
-        return view('front.admin.status', ["data" => $data]);
+        $order = Order::find($id);
+        $order->status = 'Approved';
+        $order->save();
+        return $this->respondJson('order approved', true, ['order' => $order]);
     }
 
-    public function update(Request $req, $id)
+    public function reject($id)
     {
-        $data = Order::find($id);
-        $data->status = $req->status;
-        $data->save();
-        return redirect()->back();
+        $order = Order::find($id);
+        $order->status = 'Rejected';
+        $order->save();
+        return $this->respondJson('order rejected', true, ['order' => $order]);
     }
 }
