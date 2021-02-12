@@ -3,8 +3,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const initialState = {
-    categories: [],
-    totalCategories: 0
+    categories: []
 }
 
 export default {

@@ -24,31 +24,44 @@
             <div class="relative mb-4">
               <label for="name" class="text-sm leading-7 text-gray-600">Name</label>
               <input type="text" id="name" name="name" value="{{ $user->name }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              @error('name')
+                <div class="text-red-700">{{ $message }}</div>
+              @enderror
             </div>
             <div class="relative mb-4">
               <label for="email" class="text-sm leading-7 text-gray-600">Email</label>
-              <input type="email" id="email" name="email" value="{{ $user->email }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              <input type="text" id="email" name="email" value="{{ $user->email }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              @error('email')
+                <div class="text-red-700">{{ $message }}</div>
+              @enderror
             </div>
             <div class="relative mb-4">
               <label for="gender" class="text-sm leading-7 text-gray-600">Gender</label>
               <select id="gender" name="gender" value="{{ $user->gender }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
-                <option>Male</option>
-                <option>Female</option>
+                <option value="Male" @if($user->gender === 'Male')  selected @endif>Male</option>
+                <option value="Female" @if($user->gender === 'Female')  selected @endif>Female</option>
               </select>
             </div>
             <div class="relative mb-4">
               <label for="address" class="text-sm leading-7 text-gray-600">Address</label>
-              <textarea type="text" id="address" name="address" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
-              {{ $user->address }}
-              </textarea>
+              <input type="text" id="address" name="address" value="{{ $user->address }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              @error('address')
+                <div class="text-red-700">{{ $message }}</div>
+              @enderror
             </div>
             <div class="relative mb-4">
               <label for="number" class="text-sm leading-7 text-gray-600">Mobile Number</label>
-              <input type="number" id="number" name="number" value="{{ $user->number }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              <input type="text" id="number" name="number" value="{{ $user->number }}" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              @error('number')
+                <div class="text-red-700">{{ $message }}</div>
+              @enderror
             </div>
             <div class="relative mb-4">
               <label for="password" class="text-sm leading-7 text-gray-600">Password</label>
               <input type="password" id="password" name="password" class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" />
+              @error('password')
+                <div class="text-red-700">{{ $message }}</div>
+              @enderror
             </div>
             <button type="submit" class="px-8 py-2 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Update Profile</button>
           </form>

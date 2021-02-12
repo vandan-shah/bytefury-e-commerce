@@ -2,9 +2,9 @@
   <div>
     <sw-card class="my-4">
       <template v-slot:header>
-        <span class="sw-section-title"
-          >{{ isEdit ? 'Edit' : 'Add' }} Product</span
-        >
+        <span class="sw-section-title">
+          {{ isEdit ? 'Edit' : 'Add' }} Product
+        </span>
       </template>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-5">
         <div class="col-span-4">
@@ -70,21 +70,7 @@
               @input="$v.selectedCategory.$touch()"
             />
           </sw-input-group>
-          <!-- label="name" -->
-          <!-- v-for="(pn, index) in productData.name" :key="index" -->
-          <!-- <a
-            v-show="active" 
-            v-for="(category, index) in categories" :key="index"
-          >{{ category.name }}<br></a>
-          <div @click="mouseOver">dCategories</div> -->
-          <!-- <a
-            v-show="active" 
-            v-model="selectedCategory"
-            label="name"
-            @mouseover="mouseOver"
-            >categories</a
-          > -->
-          
+
           <sw-input-group
             required
             variant="horizontal"
@@ -139,12 +125,12 @@
     </sw-card>
   </div>
 </template>
+
+
 <script>
 
 import * as FormData from 'form-data'
-import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
-import Multiselect from 'vue-multiselect'
 import { required, minLength, between } from 'vuelidate/lib/validators'
 
 export default {
@@ -288,24 +274,16 @@ export default {
     },
     async loadProduct() {
       let response = await this.fetchProduct(this.$route.params.id)
-      // console.log(response, "abcd")
       this.productData = { ...this.productData, ...response.data.data.product }
       this.selectedBrand = response.data.data.product.brand
       this.selectedCategory = response.data.data.product.category
     },
     onFileSelected(event) {
-      // console.log(event)
       this.selectedFile = event.target.files[0]
     }
   },
 }
 </script>
-<style scoped>
-i {
-  font-size: 13px;
-}
-</style>
-
 
 
 

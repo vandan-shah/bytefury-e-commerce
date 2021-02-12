@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -46,7 +45,6 @@ class CartController extends Controller
         $total_price = \ShoppingCart::totalPrice();
 
         $order = new Order;
-        //$order->order_code ='#' . str_pad( $this->id, 20, "0", STR_PAD_LEFT);
         $order->order_code ='#' .rand();
         $order->order_date = date('Y-m-d');
         $order->total = $total_price;

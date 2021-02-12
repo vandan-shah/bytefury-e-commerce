@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
             'address'=>'bhavnagar',
             'number'=>'8866148738',
             'role'=>'admin',
-            'password' => 'password'
+            'password' =>'password'
         ]);
     }
 }

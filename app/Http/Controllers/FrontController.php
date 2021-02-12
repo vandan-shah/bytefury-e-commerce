@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CustomersRequest;
 use App\Http\Requests\FrontRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -32,6 +31,14 @@ class FrontController extends Controller
 
     public function update(FrontRequest $request)
     {
+        $request->validate([
+            'name' => 'required|min:2|max:15',
+            'email' => 'required|email',
+            'gender' => 'required',
+            'address' => 'required|min:5|max:50',
+            'number' => 'required|numeric|digits_between:10,10',
+            'password' => 'required|min:6|max:20',
+        ]);
         $data = $request->validated();
         User::find(Auth::user()->id)->update($data);
         return redirect('home');

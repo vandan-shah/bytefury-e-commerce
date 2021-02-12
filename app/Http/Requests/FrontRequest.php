@@ -28,7 +28,8 @@ class FrontRequest extends FormRequest
                 "nullable"
             ],
             'email' => [
-                "nullable"
+                "nullable",
+                'email',
             ],
             'gender' => [
                 "nullable"
@@ -37,10 +38,13 @@ class FrontRequest extends FormRequest
                 "nullable"
             ],
             'number' => [
-                "required"
+                "required",
+                'numeric',
+                'digits:10',
             ],
             'password' => [
-                "required"
+                "required",
+                "min:6",
             ]
         ];
     }

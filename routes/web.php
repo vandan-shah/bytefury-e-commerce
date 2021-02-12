@@ -4,13 +4,9 @@ use App\Http\Controllers\Auth\Spa\LoginController;
 use App\Http\Controllers\Auth\Spa\LogoutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MyOrderController;
 use App\Http\Controllers\OrdersController;
-use App\Http\Controllers\StatusController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,52 +34,33 @@ Route::get('home/products',[FrontController::class, 'product']);
 
 Route::get('categories/{category}/product', [FrontController::class, 'products'])->name('category.product');
 
-// Route::get('product',[FrontController::class,'product']);
-
 Route::get('products/{product}',[FrontController::class, 'product'])->name('product.id');
 
 Route::view('customerlogin', 'front.login.login');
 Route::post('customerlogin', [AuthController::class, 'login'])->name('customerlogin');
 
-// Route::view('home', 'front.home.index');
-// Route::get('logout', [AuthController::class, 'logout'])->name('customerlogout');
-Route::get('customerlogout', [AuthController::class, 'logout'])->name('customerlogout');
-
 Route::view('customerregistration','front.login.registration');
 Route::post('customerregistration', [AuthController::class,'register'])->name('customerregistration');
 
-// Route::get('');
-Route::view('profile', 'customer.list');
-Route::get('profile',[FrontController::class,'userprofile']);
-
-Route::post('profile',[FrontController::class,'update'])->name('update');
-
-
-// Route::view('view_cart','front.cart.index')->name('view_cart');
 Route::get('allproducts', [FrontController::class, 'allProduct'])->name('allProduct');
-
-Route::view('myorders','front.order.index');
-Route::get('myorders', [MyOrderController::class, 'display']);
 
 Route::group( ['middleware' => 'auth'],function () {
 
     Route::resource('cart', CartController::class);
 
-    Route::view('update_status','front.admin.status');
-    Route::get('update_status',[StatusController::class,'list']);
+    Route::view('myorders','front.order.index');
+    Route::get('myorders', [MyOrderController::class, 'display']);  
 
-    Route::post('edit/{id}', [StatusController::class, 'update']);
+    Route::view('profile', 'customer.list');
+    Route::get('profile',[FrontController::class,'userprofile']);
+    Route::post('profile',[FrontController::class,'update'])->name('update');
 
+    Route::get('customerlogout', [AuthController::class, 'logout'])->name('customerlogout');
 });
 
 Route::view('order_success', 'front.order-success.index');
-// Route::get('image/{filename}',[FrontController::class,'image'])->name('image');
 
-// Route::view('/Register', 'Register');
-// Route::post('/Register', [AuthController::class, 'Register']);
-
-// Route::view('/login', 'login');
-// Route::post('/login', [AuthController::class, 'login']);
+Route::view('about_us', 'front.about-us.index');
 
 // Move other http requests to the Admin Dashboard App
 // -------------------------------------------------

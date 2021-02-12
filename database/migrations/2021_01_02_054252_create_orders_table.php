@@ -17,8 +17,6 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('order_code');
             $table->date('order_date');
-            $table->double('sub_total')->nullable();
-            $table->double('tax');
             $table->double('total')->nullable();
             $table->string('status');
             $table->unsignedBigInteger('user_id');

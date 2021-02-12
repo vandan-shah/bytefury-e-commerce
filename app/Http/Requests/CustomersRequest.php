@@ -42,10 +42,10 @@ class CustomersRequest extends FormRequest
             'number' => [
                 'required',
                 'numeric',
-                'digits:10'
+                'digits:10',
             ],
             'password' => [
-                "required"
+                "required",
             ]
         ];
         if ($this->getMethod() == 'PUT') {

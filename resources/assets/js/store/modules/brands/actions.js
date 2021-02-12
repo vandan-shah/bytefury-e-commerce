@@ -5,14 +5,11 @@ export const fetchBrands = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/brand`, { params })
       .then((response) => {
-        // console.log(response.data.data.brands.data, 'action');
         if (params) {
           commit(types.SET_BRANDS, response.data.data.Brand)
         } else {
           commit(types.SET_BRANDS, response.data.data.Brand.data)
         }
-        
-        // commit(types.SET_TOTAL_BRANDS, response.data.data.brands.total)
         resolve(response)
       })
       .catch((err) => {

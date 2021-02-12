@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomersRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -41,7 +40,6 @@ class AuthController extends Controller
         } else {
             return back()->withErrors([
                 'password' => 'The provided credentials do not match our records.',
-                //'password' => 'password is worng'
             ]);
         }
     }

@@ -60,7 +60,6 @@ export default {
     ...mapActions('categories', ['fetchCategories', 'deleteCategory']),
    async onDelete(id) {
       await this.deleteCategory(id)
-      this.$refs.table.refresh()
     },
 
     refreshTable() {
@@ -88,10 +87,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-  .button {
-    max-width: 40%;
-  }
-
-</style>

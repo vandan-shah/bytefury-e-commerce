@@ -3,8 +3,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const initialState = {
-    products: [],
-    totalProducts: 0
+    products: []
 }
 
 export default {

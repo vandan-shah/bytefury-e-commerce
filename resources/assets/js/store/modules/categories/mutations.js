@@ -3,12 +3,7 @@ import * as types from './mutation-types'
 export default {
 
   [types.SET_CATEGORIES](state, categories) {
-    // console.log('mutation', categories);
     state.categories = categories
-  },
-
-  [types.SET_TOTAL_CATEGORIES](state, totalCategories) {
-    state.totalCategories = totalCategories
   },
 
     [types.ADD_CATEGORY](state, data) {
@@ -16,9 +11,7 @@ export default {
   },
 
   [types.UPDATE_CATEGORY](state, data) {
-    console.log(data, 'data in mutation')
     let pos = state.categories.findIndex((cat) => cat.id === data.data.category.id)
-
     state.categories[pos] = data.category
   },
 
