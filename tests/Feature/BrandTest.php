@@ -1,83 +1,77 @@
 <?php
 
-namespace Tests\Feature;
-
+use App\Http\Controllers\BrandController;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use Laravel\Sanctum\Sanctum;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
+use Laravel\Sanctum\Sanctum;
+use function Pest\Faker\faker;
+use function Pest\Laravel\deleteJson;
+use function Pest\Laravel\getJson;
+use function Pest\Laravel\postJson;
+use function Pest\Laravel\putJson;
 
-class BrandTest extends TestCase
-{
-    use RefreshDatabase;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+beforeEach(function () {
+    Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--force' => true]);
+    $user = User::where('role', 'admin')->first();
+    Sanctum::actingAs(
+        $user,
+        ['*']
+    );
+});
 
-        Sanctum::actingAs(
-            User::factory()->create(),
-            ['*']
-        );
-    }
+getJson("api/brand/")->assertOk();
 
-    /** @test */
-    public function all_brands_to_be_paginated()
-    {
-        $this->withoutExceptionHandling();
+test('store user using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        BrandController::class,
+        'store',
+        BrandRequest::class
+    );
+});
 
-        Brand::factory()->create();
+test('store brand', function () {
 
-        $this->json('get', 'api/brand')->assertOk();
-    }
+    $brand = Brand::factory()->raw();
 
-    /** @test */
-    public function a_user_can_store_the_category()
-    {
-        $this->withoutExceptionHandling();
+    postJson('api/brand', $brand)->assertStatus(200);
 
-        $brand = Brand::factory()->make()->toArray();
+    $this->assertDatabaseHas('brands', array_slice($brand, 0, 1));
+});
 
-        $this->json('post', 'api/brand', $brand);
+test('get brand', function () {
 
-        $this->assertDatabaseHas('brands', array_slice($brand, 0, 1));
-    }
+    $brand = Brand::factory()->create();
 
-    /** @test */
-    public function a_user_can_see_brand()
-    {
-        $this->withoutExceptionHandling();
+    getJson("api/brand/{$brand->id}")->assertOk();
+});
 
-        $brand = Brand::factory()->create();
+test('update user using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        BrandController::class,
+        'update',
+        BrandRequest::class
+    );
+});
 
-        $this->json('get', "api/brand/{$brand->id}")->assertOk();
-    }
+test('update brand', function () {
 
-    /** @test */
-    public function a_user_can_update_brand()
-    {
-        $this->withoutExceptionHandling();
+    $brand = Brand::factory()->create();
 
-        $brand = Brand::factory()->create();
+    $new_brand = Brand::factory()->raw();
 
-        $new_brand = Brand::factory()->make()->toArray();
+    putJson("api/brand/{$brand->id}", $new_brand)->assertStatus(200);
 
-        $this->json('put', "api/brand/{$brand->id}", $new_brand);
+    $this->assertDatabaseHas('brands', array_slice($new_brand, 0, 1));
+});
 
-        $this->assertDatabaseHas('brands', array_slice($new_brand, 0, 1));
-    }
+test('delete brand', function () {
 
-    /** @test */
-    public function a_user_can_delete_brand()
-    {
-        $this->withoutExceptionHandling();
+    $brand = Brand::factory()->create();
 
-        $brand = Brand::factory()->create();
+    deleteJson('api/brand/' . $brand->id)->assertStatus(200);
 
-        $this->json('delete', "api/brand/{$brand->id}")->assertOk();
-
-        $this->assertDeleted($brand);
-    }
-}
+    $this->assertDeleted($brand);
+});

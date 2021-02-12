@@ -40,9 +40,7 @@ class CustomersRequest extends FormRequest
                 "required"
             ],
             'number' => [
-                'required',
-                'numeric',
-                'digits:10'
+                'required'
             ],
             'password' => [
                 "required"

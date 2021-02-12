@@ -1,29 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+use App\Http\Requests\OrderRequest;
 
-use Illuminate\Foundation\Http\FormRequest;
+test('Order request validation rules',function(){
 
-class OrderRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    $request = new OrderRequest;
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
+    $this->assertEquals(
+        [
             'order_code' => [
                 "required"
             ],
@@ -67,6 +51,15 @@ class OrderRequest extends FormRequest
             'order_items.*.product_id' => [
                 "required"
             ]
-        ];
-    }
-}
+        ],
+        $request->rules()
+    );
+
+});
+
+test('Order request authorize', function () {
+
+    $request = new OrderRequest;
+
+    $this->assertTrue($request->authorize());
+});

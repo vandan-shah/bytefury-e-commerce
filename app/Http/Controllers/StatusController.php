@@ -9,7 +9,7 @@ class StatusController extends Controller
 {
     public function list()
     {
-        $data = Order::all()->where('status','pending');
+        $data = Order::all()->where('status','Approved');
         return view('front.admin.status', ["data" => $data]);
     }
 

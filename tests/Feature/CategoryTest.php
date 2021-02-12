@@ -1,83 +1,77 @@
 <?php
-
-namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use Laravel\Sanctum\Sanctum;
-use App\Models\User;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Requests\BrandRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
+use Laravel\Sanctum\Sanctum;
+use function Pest\Faker\faker;
+use function Pest\Laravel\deleteJson;
+use function Pest\Laravel\getJson;
+use function Pest\Laravel\postJson;
+use function Pest\Laravel\putJson;
 
-class CategoryTest extends TestCase
-{
-    use RefreshDatabase;
+beforeEach(function () {
+    Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--force' => true]);
+    $user = User::where('role', 'admin')->first();
+    Sanctum::actingAs(
+        $user,
+        ['*']
+    );
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+getJson("api/categories/")->assertOk();
 
-        Sanctum::actingAs(
-            User::factory()->create(),
-            ['*']
-        );
-    }
+test('store user using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        CategoriesController::class,
+        'store',
+        CategoryRequest::class
+    );
+});
 
-    /** @test */
-    public function all_categories_to_be_paginated()
-    {
-        $this->withoutExceptionHandling();
+test('store Category', function (){
 
-        Category::factory()->create();
+    $category = Category::factory()->raw();
 
-        $this->json('get', 'api/categories')->assertOk();
-    }
+    postJson('api/categories', $category)->assertStatus(200);
 
-    /** @test */
-    public function a_user_can_store_the_category()
-    {
-        $this->withoutExceptionHandling();
+    $this->assertDatabaseHas('categories', array_slice($category, 0, 2));
 
-        $category = Category::factory()->make()->toArray();
+});
 
-        $this->json('post', 'api/categories', $category);
+test('get Category', function (){
 
-        $this->assertDatabaseHas('categories', array_slice($category, 0, 2));
-    }
+    $category = Category::factory()->create();
 
-    /** @test */
-    public function a_user_can_see_categories()
-    {
-        $this->withoutExceptionHandling();
+    getJson("api/categories/{$category->id}")->assertOk();
+});
 
-        $category = Category::factory()->create();
+test('update user using a form request', function () {
+    $this->assertActionUsesFormRequest(
+        CategoriesController::class,
+        'update',
+        CategoryRequest::class
+    );
+});
 
-        $this->json('get', "api/categories/{$category->id}")->assertOk();
-    }
+test('update Category', function () {
 
-    /** @test */
-    public function a_user_can_update_category()
-    {
-        $this->withoutExceptionHandling();
+    $category = Category::factory()->create();
 
-        $category = Category::factory()->create();
+    $category_brand = Category::factory()->raw();
 
-        $new_category = Category::factory()->make()->toArray();
+    putJson("api/categories/{$category->id}", $category_brand)->assertStatus(200);
 
-        $this->json('put',"api/categories/{$category->id}",$new_category);
+    $this->assertDatabaseHas('categories', array_slice($category_brand, 0, 1));
+});
 
-        $this->assertDatabaseHas('categories', array_slice($new_category, 0, 2));
-    }
+test('delete Category', function () {
 
-    /** @test */
-    public function a_user_can_delete_category()
-    {
-        $this->withoutExceptionHandling();
+    $category = Category::factory()->create();
 
-        $category = Category::factory()->create();
+    deleteJson('api/categories/' . $category->id)->assertStatus(200);
 
-        $this->json('delete', "api/categories/{$category->id}")->assertOk();
-
-        $this->assertDeleted($category);
-    }
-}
+    $this->assertDeleted($category);
+});
