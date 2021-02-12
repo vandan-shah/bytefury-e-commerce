@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -37,8 +36,10 @@ class ProductsController extends Controller
 
         $product->with(['category', 'brand']);
 
-        $product->addMediaFromRequest('image')->toMediaCollection();
-
+        if ($request->hasFile('image')) {
+            $product->addMediaFromRequest('image')->toMediaCollection('avatar');
+        }
+        
         return $this->respondJson('Product Create Successfully', true, ['product' => $product]);
     }
 
@@ -51,8 +52,7 @@ class ProductsController extends Controller
     public function show(Product $product)
     {
         $product->load(['category', 'brand']);
-        // $product->category;
-        // $product->brand;
+    
         return $this->respondJson('Product displayed successfully.', true, ['product' => $product]);
     }
 

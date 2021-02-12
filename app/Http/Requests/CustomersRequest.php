@@ -37,13 +37,15 @@ class CustomersRequest extends FormRequest
                 "nullable"
             ],
             'address' => [
-                "nullable"
+                "required"
             ],
             'number' => [
-                "nullable"
+                'required',
+                'numeric',
+                'digits:10',
             ],
             'password' => [
-                "required"
+                "required",
             ]
         ];
         if ($this->getMethod() == 'PUT') {

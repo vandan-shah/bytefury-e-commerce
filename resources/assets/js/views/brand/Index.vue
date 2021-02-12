@@ -19,7 +19,6 @@
         <h3 class="pt-6 sw-section-title">Brands</h3>
         <sw-table-component ref="table" :data="fetchBrand">
           <sw-table-column label="Brand" show="name" />
-          <!-- <sw-table-column label="Description" show="description" /> -->
           <sw-table-column label="action">
             <template class="d-inline" slot-scope="row">
               <sw-button variant="primary-outline" tag-name="router-link" :to="`/admin/brand/${row.id}/edit`">

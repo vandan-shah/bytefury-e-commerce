@@ -5,9 +5,7 @@ export const fetchProducts = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/products`, { params })
       .then((response) => {
-        // console.log(response.data.data.products.data, 'action');
         commit(types.SET_PRODUCTS, response.data.data.products.data)
-        // commit(types.SET_TOTAL_CATEGORIES, response.data.data.products.total)
         resolve(response)
       })
       .catch((err) => {
@@ -31,14 +29,12 @@ export const fetchProduct = ({ commit, dispatch, state }, id) => {
 
 export const addProduct = ({ commit, dispatch, state }, pData) => {
   return new Promise((resolve, reject) => {
-    // console.log(data, 'vandan')
     window.axios
       .post(`/api/products`, pData)
       .then((response) => {
         console.log(response)
         commit(types.ADD_PRODUCT, response.data)
         resolve(response)
-        // console.log(response, 'vandan')
       })
       .catch((err) => {
         reject(err)
@@ -50,11 +46,10 @@ export const updateProduct = ({ commit, dispatch, state }, {data, id}) => {
   return new Promise((resolve, reject) => {
     console.log({data, id}, 'vandan')
     window.axios
-      .put(`/api/products/${id}`, data)
+      .post(`/api/products/${id}`, data)
       .then((response) => {
         if (response.data.success) {
           commit(types.UPDATE_PRODUCT, response.data)
-          // console.log(response, 'response')
         }
         resolve(response)
       })

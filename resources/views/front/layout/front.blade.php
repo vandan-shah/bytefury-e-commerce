@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="/assets/img/mobile-logo.png" type="image/gif" sizes="16x16">
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Parisienne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link href="{{mix('/front/css/front.css')}}" rel="stylesheet" type="text/css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+    <style>
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+    </style>
     
     <title>NeoCyber!</title>
 </head>
@@ -19,19 +25,8 @@
 
     @include('front.partials.footer')
       
-    {{-- <script type="text/javascript" src="{{mix('/assets/js/front.js')}}"></script> --}}
   </div>
+  
+  <script type="text/javascript" src="{{mix('/front/js/front.js')}}"></script>
 </body> 
 </html>
-
-{{-- <style>
-
-* {
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-</style> --}}
-

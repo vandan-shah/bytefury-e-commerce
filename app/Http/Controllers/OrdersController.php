@@ -19,7 +19,9 @@ class OrdersController extends Controller
         if ($request->limit == 'all') {
             $orders = Order::with(['orderItems.product', 'user'])->get();
         } else {
-            $orders = Order::with(['orderItems.product', 'user'])->paginate(5);
+            $orders = Order::with(['orderItems.product', 'user'])->applyFilters($request->only([
+                'status',
+            ]))->paginate(5);
         }
 
         return $this->respondJson('Order Retrieved Successfully', true, ['orders' => $orders]);
