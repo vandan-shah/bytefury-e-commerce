@@ -5,10 +5,10 @@ export const fetchBrands = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/brand`, { params })
       .then((response) => {
-        if (params) {
-          commit(types.SET_BRANDS, response.data.data.Brand)
-        } else {
+        if (params.limit !== 'all') {
           commit(types.SET_BRANDS, response.data.data.Brand.data)
+        } else {
+          commit(types.SET_BRANDS, response.data.data.Brand)
         }
         resolve(response)
       })
@@ -33,13 +33,11 @@ export const fetchBrand = ({ commit, dispatch, state }, id) => {
 
 export const addBrand = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    // console.log(data, 'vandan')
     window.axios
       .post('/api/brand', data)
       .then((response) => {
         commit(types.ADD_BRAND, response.data)
         resolve(response)
-        console.log(response)
       })
       .catch((err) => {
         reject(err)
@@ -49,7 +47,6 @@ export const addBrand = ({ commit, dispatch, state }, data) => {
 
 export const updateBrand = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    console.log(data)
     window.axios
       .put(`/api/brand/${data.id}`, data)
       .then((response) => {

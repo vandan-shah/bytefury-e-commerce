@@ -13,6 +13,10 @@
         display: block;
       }
 
+      .video {
+        opacity: 0.8;
+      }
+
     </style>
     
     <title>NeoCyber!</title>
