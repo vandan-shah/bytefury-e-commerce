@@ -5,10 +5,10 @@ export const fetchCategories = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/categories`, { params })
       .then((response) => {
-        if (params) {
-          commit(types.SET_CATEGORIES, response.data.data.categories)
-        } else {
+        if (params.limit !== 'all') {
           commit(types.SET_CATEGORIES, response.data.data.categories.data)
+        } else {
+          commit(types.SET_CATEGORIES, response.data.data.categories)
         }
         resolve(response)
       })
@@ -47,7 +47,6 @@ export const addCategory = ({ commit, dispatch, state }, data) => {
 
 export const updateCategory = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    console.log(data)
     window.axios
       .put(`/api/categories/${data.id}`, data)
       .then((response) => {
