@@ -11,7 +11,7 @@
         <title>NeoCyber!</title>
     </head>
     <body>
-        <section class="text-gray-600 body-font">
+        <section class="text-gray-600 body-font my-32">
             <div class="container items-center px-5 py-24 mx-auto mt-28 lg:w-2/6 md:w-1/2">
                 <form method="POST" action="customerlogin" class="flex flex-col w-full p-8 mt-10 bg-gray-100 rounded-lg md:ml-auto md:mt-0">
                     @csrf
@@ -33,7 +33,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="px-8 py-2 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Login</button>
-                    <a href="{{route('customerregistration')}}" class="text-xs font-bold text-gray-500 cursor-pointer mt-7 place-self-center">New to NeoCyber? CREATE ACCOUNT</a>
+                    <a href="{{route('customerregistration')}}" class="text-xs font-bold text-gray-500 cursor-pointer mt-8 place-self-center">New to NeoCyber? CREATE ACCOUNT</a>
                 </form>
             </div>
         </section>
